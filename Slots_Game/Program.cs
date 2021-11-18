@@ -21,6 +21,18 @@ namespace Slots_Game
                 Raylib.ClearBackground(Color.WHITE);
                 float delta = Raylib.GetFrameTime();
 
+                
+
+                //Top
+                Raylib.DrawRectangle(0, 0, (int)winSize.X, 100, Color.PURPLE);
+                //Bottom
+                Raylib.DrawRectangle(0, 1060, (int)winSize.X, 140, Color.PURPLE);
+                //Board
+                Raylib.DrawRectangle(260, 100, 1400, 960, Color.BLACK);
+                //Slot
+                Raylib.DrawRectangle(260, 100, 280, 240, Color.YELLOW);
+
+
 
 
 
