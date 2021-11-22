@@ -14,6 +14,10 @@ namespace Slots_Game
             Raylib.InitWindow((int)winSize.X, (int)winSize.Y, "Gymnasiearbete");
             Raylib.SetTargetFPS(165);
 
+            Grid grid = new Grid();
+            grid.Fill();
+            grid.Spin();
+
 
              while (!Raylib.WindowShouldClose())
             {
@@ -21,7 +25,6 @@ namespace Slots_Game
                 Raylib.ClearBackground(Color.WHITE);
                 float delta = Raylib.GetFrameTime();
 
-                
 
                 //Top
                 Raylib.DrawRectangle(0, 0, (int)winSize.X, 100, Color.PURPLE);
@@ -30,7 +33,11 @@ namespace Slots_Game
                 //Board
                 Raylib.DrawRectangle(260, 100, 1400, 960, Color.BLACK);
                 //Slot
-                Raylib.DrawRectangle(260, 100, 280, 240, Color.YELLOW);
+                //Raylib.DrawRectangle(260, 100, 280, 240, Color.YELLOW);
+
+                //Grid
+                grid.DrawSlots();
+                grid.MoveSlots(delta);
 
 
 

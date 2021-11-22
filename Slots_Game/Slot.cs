@@ -8,8 +8,9 @@ namespace Slots_Game
     public class Slot
     {
         Vector2 size = new Vector2(280, 240);
+        public Vector2 Pos {get; set;}
         int index;
-        int pay;
+        int speed = 200;
         Color color = Color.YELLOW;
         Random gen = new Random();
 
@@ -22,16 +23,21 @@ namespace Slots_Game
                 Color.ORANGE,
                 Color.YELLOW,
                 Color.GREEN,
-                Color.BLUE,
+                Color.SKYBLUE,
                 Color.PURPLE
             };
             index = gen.Next(0, 5);
             color = colors[index];
         }
 
-        public void Draw(int x, int y)
+        public void Draw(float x, float y)
         {
-            Raylib.DrawRectangle(x, y, (int)size.X, (int)size.Y, color);
+            Raylib.DrawRectangle((int)x, (int)y, (int)size.X, (int)size.Y, color);
+        }
+
+        public void Move(float delta)
+        {
+            Pos = new Vector2(Pos.X, Pos.Y + (speed * delta));
         }
     }
 }
