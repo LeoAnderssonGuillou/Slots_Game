@@ -10,7 +10,7 @@ namespace Slots_Game
         Vector2 size = new Vector2(280, 240);
         public Vector2 Pos {get; set;}
         int index;
-        int speed = 200;
+        int speed = 800;
         Color color = Color.YELLOW;
         Random gen = new Random();
 
@@ -30,9 +30,9 @@ namespace Slots_Game
             color = colors[index];
         }
 
-        public void Draw(float x, float y)
+        public void Draw()
         {
-            Raylib.DrawRectangle((int)x, (int)y, (int)size.X, (int)size.Y, color);
+            Raylib.DrawRectangle((int)Pos.X, (int)Pos.Y, (int)size.X, (int)size.Y, color);
         }
 
         public void Move(float delta)

@@ -26,10 +26,7 @@ namespace Slots_Game
                 float delta = Raylib.GetFrameTime();
 
 
-                //Top
-                Raylib.DrawRectangle(0, 0, (int)winSize.X, 100, Color.PURPLE);
-                //Bottom
-                Raylib.DrawRectangle(0, 1060, (int)winSize.X, 140, Color.PURPLE);
+        
                 //Board
                 Raylib.DrawRectangle(260, 100, 1400, 960, Color.BLACK);
                 //Slot
@@ -39,6 +36,16 @@ namespace Slots_Game
                 grid.DrawSlots();
                 grid.MoveSlots(delta);
 
+                 //Top
+                Raylib.DrawRectangle(0, 0, (int)winSize.X, 100, Color.PURPLE);
+                //Bottom
+                Raylib.DrawRectangle(0, 1060, (int)winSize.X, 140, Color.PURPLE);
+
+
+                if (Raylib.IsKeyReleased(KeyboardKey.KEY_ENTER))
+                {
+                    grid.Spin();
+                }
 
 
 

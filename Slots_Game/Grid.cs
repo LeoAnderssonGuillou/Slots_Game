@@ -6,8 +6,10 @@ using Raylib_cs;
 namespace Slots_Game
 {
     public class Grid
-    {
-        Slot[,] grid = new Slot[5,8];
+    {   
+        int gX = 5;
+        int gY = 9;
+        Slot[,] grid = new Slot[5,9];
         Vector2 slotSize = new Vector2(280, 240);
         Vector2 startPos;
         public int ShouldMove {get; set;}
@@ -20,9 +22,9 @@ namespace Slots_Game
 
         public void Fill()
         {
-            for (int x = 0; x < 5; x++)
+            for (int x = 0; x < gX; x++)
             {
-                for (int y = 0; y < 8; y++)
+                for (int y = 0; y < gY; y++)
                 {
                     grid[x, y] = new Slot();
                     Slot slot = grid[x, y];
@@ -33,21 +35,22 @@ namespace Slots_Game
 
         public void DrawSlots()
         {
-            for (int x = 0; x < 5; x++)
+            for (int x = 0; x < gX; x++)
             {
-                for (int y = 0; y < 8; y++)
+                for (int y = 0; y < gY; y++)
                 {
                     Slot slot = grid[x, y];
-                    slot.Draw(startPos.X + (x * slotSize.X), startPos.Y + (y * slotSize.Y));
+                    slot.Draw();
                 }
             }
         }
 
+        //NEEDS TO GO THROUGH DIFFERENTLY
         public void MoveSlots(float delta)
         {
-            for (int x = 0; x < 5; x++)
+            for (int x = 0; x < gX; x++)
             {
-                for (int y = 0; y < 8; y++)
+                for (int y = 0; y < gY; y++)
                 {
                     Slot slot = grid[x, y];
                     //If slot is above where it "should" be based on its position in the grid array, move it down
@@ -59,7 +62,7 @@ namespace Slots_Game
                     else
                     {
                         slot.Pos = new Vector2(slot.Pos.X, startPos.Y + (y * slotSize.Y));
-                        Console.WriteLine("move not");
+                        Console.WriteLine($"move not {x} {y}");
                     }
                     
                 }
@@ -68,13 +71,20 @@ namespace Slots_Game
 
         public void Spin()
         {
-            for (int x = 5; x < 0; x--)
+            for (int x = gX - 1; x >= 0; x--)
             {
-                for (int y = 7; y < 0; y--)
+                for (int y = gY - 2; y >= 0; y--)
                 {
                     Slot slot = grid[x, y];
                     grid[x, y + 1] = slot;
                 }
+            }
+
+            for (int x = 0; x < gX; x++)
+            {
+                Slot slot = new Slot();
+                slot.Pos = new Vector2(startPos.X + (x * slotSize.X), startPos.Y);
+                grid[x, 0] = slot;
             }
         }
 
