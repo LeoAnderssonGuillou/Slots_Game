@@ -7,10 +7,10 @@ namespace Slots_Game
 {
     public class Slot
     {
-        Vector2 size = new Vector2(280, 240);
+        public int Index {get; set;}
         public Vector2 Pos {get; set;}
-        int index;
-        int speed = 800;
+        Vector2 size = new Vector2(280, 240);
+        int speed = 2000;
         Color color = Color.YELLOW;
         Random gen = new Random();
 
@@ -26,8 +26,8 @@ namespace Slots_Game
                 Color.SKYBLUE,
                 Color.PURPLE
             };
-            index = gen.Next(0, 5);
-            color = colors[index];
+            Index = gen.Next(0, 5);
+            color = colors[Index];
         }
 
         public void Draw()

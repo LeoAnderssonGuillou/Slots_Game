@@ -16,7 +16,6 @@ namespace Slots_Game
 
             Grid grid = new Grid();
             grid.Fill();
-            grid.Spin();
 
 
              while (!Raylib.WindowShouldClose())
@@ -44,7 +43,12 @@ namespace Slots_Game
 
                 if (Raylib.IsKeyReleased(KeyboardKey.KEY_ENTER))
                 {
-                    grid.Spin();
+                    grid.Spin(4);
+                }
+                if (grid.spinAgain == true)
+                {
+                    grid.Spin(4);
+                    Console.WriteLine("Spun");
                 }
 
 
