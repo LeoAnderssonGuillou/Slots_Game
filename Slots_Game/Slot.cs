@@ -15,6 +15,22 @@ namespace Slots_Game
         Random gen = new Random();
 
         
+        public Slot(int i)
+        {
+            List<Color> colors = new List<Color>()
+            {
+                Color.RED,
+                Color.ORANGE,
+                Color.YELLOW,
+                Color.GREEN,
+                Color.SKYBLUE,
+                Color.PURPLE
+            };
+            Index = gen.Next(0, 5);
+            Index = i;
+            color = colors[Index];
+        }
+
         public Slot()
         {
             List<Color> colors = new List<Color>()

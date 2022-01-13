@@ -25,7 +25,6 @@ namespace Slots_Game
                 float delta = Raylib.GetFrameTime();
 
 
-        
                 //Board
                 Raylib.DrawRectangle(260, 100, 1400, 960, Color.BLACK);
                 //Slot
@@ -43,12 +42,11 @@ namespace Slots_Game
 
                 if (Raylib.IsKeyReleased(KeyboardKey.KEY_ENTER))
                 {
-                    grid.Spin(4);
+                    grid.Spin();
                 }
-                if (grid.spinAgain == true)
+                if (grid.SpinAgain == true)
                 {
-                    grid.Spin(4);
-                    Console.WriteLine("Spun");
+                    grid.Spin();
                 }
 
 

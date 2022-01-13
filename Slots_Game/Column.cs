@@ -7,13 +7,15 @@ namespace Slots_Game
 {
     public class Column
     {
-        Queue<Slot> slots = new Queue<Slot>();
+        public Queue<Slot> slots;
 
         public Column()
         {
+            slots = new Queue<Slot>();
+             
             for (int i = 0; i < 4; i++)
             {
-                Slot slot = new Slot(){Index = i};
+                Slot slot = new Slot(i);
                 slots.Enqueue(slot);
             }
         }

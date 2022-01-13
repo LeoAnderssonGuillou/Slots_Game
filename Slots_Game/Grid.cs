@@ -12,8 +12,10 @@ namespace Slots_Game
         Slot[,] grid;
         Vector2 slotSize = new Vector2(280, 240);
         Vector2 startPos;
-        Column[] waitingColumns = new Column[4];
-        public bool spinAgain = false;
+        Column[] waitingColumns = new Column[5];
+        public bool SpinAgain {get; set;} = false;
+
+        Queue<Slot> waitingSlots = new Queue<Slot>();
 
 
         public Grid()
@@ -48,10 +50,12 @@ namespace Slots_Game
             }
         }
 
+        //Returns the y position that corresponds to a row in grid
         public float Goal(int y)
         {
             return startPos.Y + (y * slotSize.Y);
         }
+
 
         public void MoveSlots(float delta)
         {
@@ -64,24 +68,49 @@ namespace Slots_Game
                     if (slot.Pos.Y < Goal(y))
                     {
                         slot.Move(delta);
-                        spinAgain = false;
+                        SpinAgain = false;
                     }
                 }
             }
 
+            //Runs when a full board of slots has passed the screen
             if (grid[0, 7].Pos.Y > Goal(7))
             {
-                Console.WriteLine("yo?");
-                spinAgain = true;
-                //headstart = grid[0, 7].Pos.Y - Goal(7);
+                SpinAgain = true;
+                Console.WriteLine("SPINNING AGAIN");
             }
         }
 
-        public void Spin(int length)
+        //Before every "Spin", create 5 columns of slots waiting to spawn
+        public void PrepareNewWaitingColumns()
         {
-            for (int i = 0; i < length; i++)
+            for (int i = 0; i < 5; i++)
             {
-                //Move slots down - Overrides last row
+                waitingColumns[i] = new Column();
+            } 
+        }
+
+
+        //Create new slots at top
+        public void CreateSlotsAtTop()
+        {
+            float startY = grid[0, 0].Pos.Y - slotSize.Y;
+            for (int x = 0; x < gX; x++)
+            {
+                Slot slot = waitingColumns[x].slots.Dequeue();
+                slot.Pos = new Vector2(startPos.X + (x * slotSize.X), startY);
+                grid[x, 0] = slot;
+            }
+        }
+
+        public void Spin()
+        {
+            PrepareNewWaitingColumns();
+
+            //Moves all slots down and creates new ones 4 times
+            for (int i = 0; i < 4; i++)
+            {
+                //Move all slots down - Overrides last row
                 for (int x = gX - 1; x >= 0; x--)
                 {
                     for (int y = gY - 2; y >= 0; y--)
@@ -90,16 +119,9 @@ namespace Slots_Game
                         grid[x, y + 1] = slot;
                     }
                 }
-
-                //Create new slots at top
-                float startY = grid[0, 0].Pos.Y - slotSize.Y;
-                for (int x = 0; x < gX; x++)
-                {
-                    Slot slot = new Slot();
-                    slot.Pos = new Vector2(startPos.X + (x * slotSize.X), startY);
-                    grid[x, 0] = slot;
-                }
+                CreateSlotsAtTop();
             } 
         }
+
     }
 }
