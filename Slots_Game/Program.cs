@@ -40,14 +40,7 @@ namespace Slots_Game
                 Raylib.DrawRectangle(0, 1060, (int)winSize.X, 140, Color.PURPLE);
 
 
-                if (Raylib.IsKeyReleased(KeyboardKey.KEY_ENTER))
-                {
-                    grid.Spin();
-                }
-                if (grid.SpinAgain == true)
-                {
-                    grid.Spin();
-                }
+                grid.HandleSpinning();
 
 
 

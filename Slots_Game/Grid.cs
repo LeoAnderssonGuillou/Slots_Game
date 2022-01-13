@@ -13,7 +13,9 @@ namespace Slots_Game
         Vector2 slotSize = new Vector2(280, 240);
         Vector2 startPos;
         Column[] waitingColumns = new Column[5];
-        public bool SpinAgain {get; set;} = false;
+        bool couldProvokeSpin = false;
+        bool spinning = false;
+        int timesSpun = 0;
 
         Queue<Slot> waitingSlots = new Queue<Slot>();
 
@@ -68,7 +70,7 @@ namespace Slots_Game
                     if (slot.Pos.Y < Goal(y))
                     {
                         slot.Move(delta);
-                        SpinAgain = false;
+                        couldProvokeSpin = false;
                     }
                 }
             }
@@ -76,8 +78,29 @@ namespace Slots_Game
             //Runs when a full board of slots has passed the screen
             if (grid[0, 7].Pos.Y > Goal(7))
             {
-                SpinAgain = true;
-                Console.WriteLine("SPINNING AGAIN");
+                couldProvokeSpin = true;
+            }
+        }
+
+        //Determines whether to spin or not
+        public void HandleSpinning()
+        {
+            if (Raylib.IsKeyReleased(KeyboardKey.KEY_ENTER) && !spinning)
+            {
+                spinning = true;
+                couldProvokeSpin = true;
+            }
+
+            if (couldProvokeSpin && spinning)
+            {
+                ProvokeSpin();
+            }
+
+            if (timesSpun == 5)
+            {
+                spinning = false;
+                couldProvokeSpin = false;
+                timesSpun = 0;
             }
         }
 
@@ -103,7 +126,10 @@ namespace Slots_Game
             }
         }
 
-        public void Spin()
+        //Provoking a spin moves all slots down 4 times and creates new ones at top
+        //This only refers to the slots being moved in the "grid" 2D-array - graphically, they remain in place
+        //Slots graphically being above where they "should" be according to the "grid" array will cause them to move in "MoveSlots"
+        public void ProvokeSpin()
         {
             PrepareNewWaitingColumns();
 
@@ -120,7 +146,8 @@ namespace Slots_Game
                     }
                 }
                 CreateSlotsAtTop();
-            } 
+            }
+            timesSpun++;
         }
 
     }
