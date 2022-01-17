@@ -15,7 +15,8 @@ namespace Slots_Game
              
             for (int i = 0; i < 4; i++)
             {
-                Slot slot = new Slot(i);
+                Slot slot = new Slot();
+                //Slot slot = new Slot(i);
                 slots.Enqueue(slot);
             }
         }

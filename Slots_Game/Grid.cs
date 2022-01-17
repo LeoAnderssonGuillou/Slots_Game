@@ -16,6 +16,7 @@ namespace Slots_Game
         bool couldProvokeSpin = false;
         bool spinning = false;
         int timesSpun = 0;
+        int stoppedColumns = 0;
 
         Queue<Slot> waitingSlots = new Queue<Slot>();
 
@@ -75,12 +76,15 @@ namespace Slots_Game
                 }
             }
 
-            //Runs when a full board of slots has passed the screen
-            if (grid[0, 7].Pos.Y > Goal(7))
+            //Runs when a full set of 4 slots has passed the rightmost column.
+            //If all/some columns are still spinning, this means one or more columns should "spin" again.
+            //If the rigtmost column was the last column spinning, it means the whole board should stop.
+            if (grid[4, 7].Pos.Y > Goal(7))
             {
                 couldProvokeSpin = true;
             }
         }
+
 
         //Determines whether to spin or not
         public void HandleSpinning()
@@ -93,10 +97,15 @@ namespace Slots_Game
 
             if (couldProvokeSpin && spinning)
             {
-                ProvokeSpin();
+                ProvokeSpin(stoppedColumns);
+                if (timesSpun >= 5)
+                {
+                    stoppedColumns++;
+                }
             }
 
-            if (timesSpun == 5)
+
+            if (timesSpun == 99)
             {
                 spinning = false;
                 couldProvokeSpin = false;
@@ -129,7 +138,7 @@ namespace Slots_Game
         //Provoking a spin moves all slots down 4 times and creates new ones at top
         //This only refers to the slots being moved in the "grid" 2D-array - graphically, they remain in place
         //Slots graphically being above where they "should" be according to the "grid" array will cause them to move in "MoveSlots"
-        public void ProvokeSpin()
+        public void ProvokeSpin(int targets)
         {
             PrepareNewWaitingColumns();
 
@@ -137,7 +146,7 @@ namespace Slots_Game
             for (int i = 0; i < 4; i++)
             {
                 //Move all slots down - Overrides last row
-                for (int x = gX - 1; x >= 0; x--)
+                for (int x = gX - 1; x >= targets; x--)   //0 important
                 {
                     for (int y = gY - 2; y >= 0; y--)
                     {
