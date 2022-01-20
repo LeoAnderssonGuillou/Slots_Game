@@ -48,8 +48,8 @@ namespace Slots_Game
 
         public void Draw(int y, float controllerPos)
         {
-            int distanceToController = (7 + y) * (int)size.Y;
-            Raylib.DrawRectangle((int)Pos.X, (int)controllerPos - distanceToController, (int)size.X, (int)size.Y, color);
+            int distanceToController = (y - 7) * (int)size.Y;
+            Raylib.DrawRectangle((int)Pos.X, (int)controllerPos + distanceToController, (int)size.X, (int)size.Y, color);
         }
 
         public void Move(float delta)

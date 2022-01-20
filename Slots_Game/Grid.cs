@@ -104,7 +104,7 @@ namespace Slots_Game
             //Runs when a full set of 4 slots has passed the rightmost column.
             //If all/some columns are still spinning, this means one or more columns should "spin" again.
             //If the rigtmost column was the last column spinning, it means the whole board should stop.
-            if (grid[4, 7].Pos.Y > Goal(7))
+            if (grid[4, 7].Pos.Y >= Goal(7))
             {
                 couldProvokeSpin = true;
             }
@@ -118,14 +118,6 @@ namespace Slots_Game
             if (controllerSlot.Pos.Y < Goal(7))
             {
                 controllerSlot.Move(delta);
-            }
-
-            //Runs when a full set of 4 slots has passed the rightmost column.
-            //If all/some columns are still spinning, this means one or more columns should "spin" again.
-            //If the rigtmost column was the last column spinning, it means the whole board should stop.
-            if (grid[4, 7].Pos.Y > Goal(7))
-            {
-                couldProvokeSpin = true;
             }
         }
 
