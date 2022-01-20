@@ -7,18 +7,19 @@ namespace Slots_Game
 {
     public class Column
     {
-        public Queue<Slot> slots;
+        public Queue<Slot> waitingSlots = new Queue<Slot>();
 
-        public Column()
+
+        //Prepares a queue of 4 slots waiting to spawn
+        public void Reload()
         {
-            slots = new Queue<Slot>();
-             
             for (int i = 0; i < 4; i++)
             {
                 Slot slot = new Slot();
                 //Slot slot = new Slot(i);
-                slots.Enqueue(slot);
+                waitingSlots.Enqueue(slot);
             }
         }
+
     }
 }

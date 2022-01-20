@@ -46,9 +46,10 @@ namespace Slots_Game
             color = colors[Index];
         }
 
-        public void Draw()
+        public void Draw(int y, float controllerPos)
         {
-            Raylib.DrawRectangle((int)Pos.X, (int)Pos.Y, (int)size.X, (int)size.Y, color);
+            int distanceToController = (7 + y) * (int)size.Y;
+            Raylib.DrawRectangle((int)Pos.X, (int)controllerPos - distanceToController, (int)size.X, (int)size.Y, color);
         }
 
         public void Move(float delta)
