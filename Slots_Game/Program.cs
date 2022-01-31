@@ -29,6 +29,10 @@ namespace Slots_Game
                 Raylib.DrawRectangle(260, 100, 1400, 960, Color.BLACK);
                 //Slot
                 //Raylib.DrawRectangle(260, 100, 280, 240, Color.YELLOW);
+                Raylib.DrawRectangle(0, 610, 240, 96, Color.GRAY);
+                Raylib.DrawRectangle(0, 514, 240, 96, Color.LIGHTGRAY);
+                Raylib.DrawRectangle(0, 706, 240, 96, Color.LIGHTGRAY);
+                Raylib.DrawRectangle(0, 418, 240, 96, Color.BEIGE);
 
                 //Grid
                 grid.DrawSlots();

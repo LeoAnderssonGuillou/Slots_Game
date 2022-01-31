@@ -149,7 +149,7 @@ namespace Slots_Game
             }
         }
 
-        //Before every "Spin", create 5 sets of 4 slots waiting to spawn
+        //Before every "ProvokeSpin", create 5 sets of 4 slots waiting to spawn
         public void ReloadColumns(int targets)
         {
             for (int i = targets; i < 5; i++)
@@ -160,9 +160,11 @@ namespace Slots_Game
 
 
         //Create new slots at top
-        public void CreateSlotsAtTop(int targets)
+        public void CreateSlotsAtTop(int targets, int i)
         {
-            float startY = grid[0, 0].Pos.Y - slotSize.Y;
+            //float startY = grid[0, 0].Pos.Y - slotSize.Y;           //THE SOURCE OF PROBLEMS
+            //float startY = startPos.Y - (slotSize.Y * i);
+            float startY = 0;
             for (int x = targets; x < gX; x++)
             {
                 Slot slot = Columns[x].waitingSlots.Dequeue();
@@ -190,7 +192,7 @@ namespace Slots_Game
                         grid[x, y + 1] = slot;
                     }
                 }
-                CreateSlotsAtTop(targets);
+                CreateSlotsAtTop(targets, i);
             }
             timesSpun++;
         }
