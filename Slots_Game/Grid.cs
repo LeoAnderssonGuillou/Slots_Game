@@ -164,7 +164,7 @@ namespace Slots_Game
         {
             //float startY = grid[0, 0].Pos.Y - slotSize.Y;           //THE SOURCE OF PROBLEMS
             //float startY = startPos.Y - (slotSize.Y * i);
-            float startY = 0;
+            float startY = (100 - (slotSize.Y * 1)) - (slotSize.Y * i);
             for (int x = targets; x < gX; x++)
             {
                 Slot slot = Columns[x].waitingSlots.Dequeue();

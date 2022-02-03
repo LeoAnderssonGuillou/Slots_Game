@@ -55,8 +55,9 @@ namespace Slots_Game
             //Red controllers
             if (distanceToController == 0)
             {
-                Raylib.DrawRectangle((int)Pos.X, (int)controllerPos + distanceToController, (int)size.X, (int)size.Y, Color.RED);
-                Raylib.DrawRectangle((int)(Pos.X / 10), (int)((controllerPos + distanceToController) / 10) + 600, (int)(size.X / 10), (int)(size.Y / 10), Color.RED);
+                Color redCon = new Color(255, 0, 0, 210);
+                Raylib.DrawRectangle((int)Pos.X, (int)controllerPos + distanceToController, (int)size.X, (int)size.Y, redCon);
+                Raylib.DrawRectangle((int)(Pos.X / 10), (int)((controllerPos + distanceToController) / 10) + 600, (int)(size.X / 10), (int)(size.Y / 10), redCon);
             }
         }
 
@@ -66,3 +67,12 @@ namespace Slots_Game
         }
     }
 }
+
+
+
+
+
+//MAKE ONE FLOAT THE Y POS OF EVERYTHING
+//HANDLE SPINNING BASED ON THAT
+//DRAW SLOTS BASED ON THAT
+//CREATE SLOTS BASED ON THAT?
