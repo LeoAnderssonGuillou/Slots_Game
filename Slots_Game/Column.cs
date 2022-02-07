@@ -7,12 +7,12 @@ namespace Slots_Game
 {
     public class Column
     {
-        public Queue<Slot> waitingSlots = new Queue<Slot>();
-        public float YMovement {get; set;}
-        public int Index {get; set;}
+        public Queue<Slot> waitingSlots = new Queue<Slot>();    //Queue of slots waiting to spawn
+        public float YMovement {get; set;}                      //YMovement acts like a columns origin of movement
+        public int Index {get; set;}                            //Which column (0-4) this is
 
-        int controlPos =  (int)(100 + (3 * 240));
-        int speed = 1500;
+        int controlPos =  (int)(100 + (3 * 240));               //Where YMovement wants to go. When a column is here, it means its slots are graphically where they should be based on their positions in the grid array.
+        int speed = 1500;                                       //A columns speed of movement
 
 
         //Prepares a queue of 4 slots waiting to spawn
@@ -22,7 +22,6 @@ namespace Slots_Game
             for (int i = 0; i < 4; i++)
             {
                 Slot slot = new Slot();
-                //Slot slot = new Slot(i);
                 waitingSlots.Enqueue(slot);
             }
             YMovement = 100 - (1 * 240);
@@ -30,7 +29,7 @@ namespace Slots_Game
 
         public void Move(float delta)
         {
-            //If slot is above where it "should" be based on its position in the grid array, move it down
+            //If the column's origin of movement is above its "goal"(controlPos), move it down
             if (YMovement < controlPos)
             {
                 YMovement += speed * delta;

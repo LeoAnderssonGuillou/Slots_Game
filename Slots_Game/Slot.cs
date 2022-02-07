@@ -13,22 +13,6 @@ namespace Slots_Game
         Color color = Color.YELLOW;
         Random gen = new Random();
 
-        
-        public Slot(int i)
-        {
-            List<Color> colors = new List<Color>()
-            {
-                Color.PINK,
-                Color.ORANGE,
-                Color.YELLOW,
-                Color.GREEN,
-                Color.SKYBLUE,
-                Color.PURPLE
-            };
-            Index = gen.Next(0, 5);
-            Index = i;
-            color = colors[Index];
-        }
 
         public Slot()
         {
@@ -62,18 +46,8 @@ namespace Slots_Game
             // }
         }
 
-        public void Move(float delta)
-        {
-            Pos = new Vector2(Pos.X, Pos.Y + (1000 * delta));
-        }
     }
 }
 
 
 
-
-
-//MAKE ONE FLOAT THE Y POS OF EVERYTHING
-//HANDLE SPINNING BASED ON THAT
-//DRAW SLOTS BASED ON THAT
-//CREATE SLOTS BASED ON THAT?

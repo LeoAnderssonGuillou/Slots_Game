@@ -19,8 +19,6 @@ namespace Slots_Game
         int stoppedColumns = 0;
         int controlPos =  (int)(100 + (3 * 240));
 
-        
-
         Queue<Slot> waitingSlots = new Queue<Slot>();
 
 
@@ -36,19 +34,6 @@ namespace Slots_Game
         }
 
 
-        // public void Fill()
-        // {
-        //     for (int x = 0; x < gX; x++)
-        //     {
-        //         for (int y = 0; y < gY; y++)
-        //         {
-        //             grid[x, y] = new Slot();
-        //             Slot slot = grid[x, y];
-        //             slot.Pos = new Vector2(startPos.X + (x * slotSize.X), startPos.Y + (y * slotSize.Y));
-        //         }
-        //     }
-        // }
-
         public void Fill()
         {
             for (int x = 0; x < gX; x++)
@@ -61,7 +46,8 @@ namespace Slots_Game
             }
         }
 
-        public void DrawSlots()     //NEEDS UPDATING
+
+        public void DrawSlots()
         {
             for (int x = 0; x < gX; x++)
             {
@@ -74,31 +60,6 @@ namespace Slots_Game
             }
         }
 
-        //Returns the y position that corresponds to a row in grid
-        public float Goal(int y)
-        {
-            return startPos.Y + (y * slotSize.Y);
-        }
-
-
-
-
-        // public void MoveSlots(float delta)
-        // {
-        //     for (int x = 0; x < 5; x++)
-        //     {
-        //         MoveColumn(x, delta);
-        //     }
-        //     couldProvokeSpin = false;
-
-        //     //Runs when a full set of 4 slots has passed the rightmost column.
-        //     //If all/some columns are still spinning, this means one or more columns should "spin" again.
-        //     //If the rigtmost column was the last column spinning, it means the whole board should stop.
-        //     if (grid[4, 7].Pos.Y >= Goal(7))
-        //     {
-        //         couldProvokeSpin = true;
-        //     }
-        // }
 
         public void MoveSlots(float delta)
         {
@@ -116,18 +77,6 @@ namespace Slots_Game
                 couldProvokeSpin = true;
             }
         }
-
-        // public void MoveColumn(int x, float delta)
-        // {
-        //     Slot controllerSlot = grid[x, 7];
-
-        //     //If slot is above where it "should" be based on its position in the grid array, move it down
-        //     if (controllerSlot.Pos.Y < Goal(7))
-        //     {
-        //         controllerSlot.Move(delta);
-        //     }
-        // }
-
 
 
         //Determines whether to spin or not
@@ -158,6 +107,7 @@ namespace Slots_Game
         }
 
         //Before every "ProvokeSpin", create 5 sets of 4 slots waiting to spawn
+        //Also resets YMovement of columns
         public void ReloadColumns(int targets)
         {
             for (int i = targets; i < 5; i++)
@@ -166,18 +116,6 @@ namespace Slots_Game
             } 
         }
 
-
-        // //Create new slots at top
-        // public void CreateSlotsAtTop(int targets, int i)
-        // {
-        //     float startY = (100 - (slotSize.Y * 1)) - (slotSize.Y * i);
-        //     for (int x = targets; x < gX; x++)
-        //     {
-        //         Slot slot = columns[x].waitingSlots.Dequeue();
-        //         slot.Pos = new Vector2(startPos.X + (x * slotSize.X), startY);
-        //         grid[x, 0] = slot;
-        //     }
-        // }
 
         //Create new slots at top
         public void CreateSlotsAtTop(int targets, int i)
@@ -191,7 +129,7 @@ namespace Slots_Game
 
         //Provoking a spin moves all slots down 4 times and creates new ones at top
         //This only refers to the slots being moved in the "grid" 2D-array. Graphically, they remain in place
-        //Slots graphically being above where they "should" be according to the "grid" array will cause them to move in "MoveSlots"
+        //Columns' YMovement being reset causes them to move down graphically
         public void ProvokeSpin(int targets)
         {
             ReloadColumns(targets);
