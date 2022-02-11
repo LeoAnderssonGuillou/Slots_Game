@@ -32,17 +32,19 @@ namespace Slots_Game
 
         public void Draw(int y, Column column)
         {
+            int yMovement = (int)column.YMovement;
             int distanceToController = (y - 7) * (int)size.Y;
             int xPos = 260 + (column.Index * (int)size.X);
-            Raylib.DrawRectangle(xPos, (int)column.YMovement + distanceToController, (int)size.X, (int)size.Y, color);
-            Raylib.DrawRectangle((int)(xPos / 10), (int)((column.YMovement + distanceToController) / 10) + 600, (int)(size.X / 10), (int)(size.Y / 10), color);
+
+            Raylib.DrawRectangle(xPos, yMovement+ distanceToController, (int)size.X, (int)size.Y, color);
+            Raylib.DrawRectangle((int)(xPos / 10), ((yMovement + distanceToController) / 10) + 600, (int)(size.X / 10), (int)(size.Y / 10), color);
             
             //Red controllers
             // if (distanceToController == 0)
             // {
             //     Color redCon = new Color(255, 0, 0, 210);
-            //     Raylib.DrawRectangle(xPos, (int)column.YMovement + distanceToController, (int)size.X, (int)size.Y, redCon);
-            //     Raylib.DrawRectangle((int)(xPos / 10), (int)((column.YMovement + distanceToController) / 10) + 600, (int)(size.X / 10), (int)(size.Y / 10), redCon);
+            //     Raylib.DrawRectangle(xPos, yMovement + distanceToController, (int)size.X, (int)size.Y, redCon);
+            //     Raylib.DrawRectangle((int)(xPos / 10), ((yMovement + distanceToController) / 10) + 600, (int)(size.X / 10), (int)(size.Y / 10), redCon);
             // }
         }
 

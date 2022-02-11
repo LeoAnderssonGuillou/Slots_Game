@@ -94,6 +94,10 @@ namespace Slots_Game
                 if (timesSpun >= 3)
                 {
                     stoppedColumns++;
+                    // if (stoppedColumns >= 2)
+                    // {
+                    //     columns[stoppedColumns - 2].YMovement = controlPos;
+                    // }
                 }
             }
 
@@ -107,12 +111,13 @@ namespace Slots_Game
         }
 
         //Before every "ProvokeSpin", create 5 sets of 4 slots waiting to spawn
-        //Also resets YMovement of columns
+        //Also resets movement variables of columns
         public void ReloadColumns(int targets)
         {
             for (int i = targets; i < 5; i++)
             {
                 columns[i].Reload();
+                columns[i].Reset();
             } 
         }
 
