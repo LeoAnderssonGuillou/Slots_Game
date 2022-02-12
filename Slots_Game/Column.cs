@@ -12,11 +12,13 @@ namespace Slots_Game
         public int Index {get; set;}                            //Which column (0-4) this is
 
         int controlPos =  (int)(100 + (3 * 240));               //Where YMovement wants to go. When a column is here, it means its slots are graphically where they should be based on their positions in the grid array.
-        float speed = 1500;                                       //A columns speed of movement
+        float speed = 0;                                        //Columns speed of movement
+        float maxSpeed = 2000;
         bool tryingToStop = false;
-        bool belowControl = false;
-        int timesPassedControl = 0;
-        float speedChange = 8000;
+        float gravity = 10000;
+        float friction = 5000;
+        float stopCounter = 0;
+        bool stoppedCompletely = false;
 
         //Prepares a queue of 4 slots waiting to spawn
         //Also resets YMovement
@@ -32,66 +34,60 @@ namespace Slots_Game
         public void Reset()
         {
             YMovement = 100 - (1 * 240);
-            speed = 1500;
             tryingToStop = false;
-            belowControl = false;
-            timesPassedControl = 0;
-            speedChange = 8000;
+            stopCounter = 0;
+            stoppedCompletely = false;
         }
 
         public void Move(float delta)
         {
-            //If the column's origin of movement (YMovement) is above its "goal"(controlPos), move it down
+            //If the column's origin of movement (YMovement) is above its "goal"(controlPos), move it down by accelerating
             if (YMovement < controlPos)
             {
-                if (tryingToStop)
+                speed += gravity * delta;
+                if (speed > maxSpeed)
                 {
-                    speed += speedChange * delta;
-                }
-                if (belowControl)
-                {
-                    belowControl = false;
-                    timesPassedControl++;
+                    speed = maxSpeed;
                 }
                 YMovement += speed * delta;
             }
+            //If origin is below controlPos, it must mean it should stop - meaning it should accelerate up
+            //When the column senses it is below controlPos, that means controlPos has not been moved down and the column should aim to stop
+            //This causes it to try to accelerate up
             else if (YMovement > controlPos)
             {
+                //When this first happens, the column enters tryingToStop-mode
                 tryingToStop = true;
-                if (tryingToStop)
-                {
-                    speed -= speedChange * delta;
-                }
-                if (belowControl == false)
-                {
-                    belowControl = true;
-                    timesPassedControl++;
-                    if (timesPassedControl >= 1000)
-                    {
-                        YMovement = controlPos;
-                    }
-
-                }
+                speed -= gravity * delta;
                 YMovement += speed * delta;
             }
+
+            //In tryingToStop-mode, a friction is added making the column eventually stop at controlPos
             if (tryingToStop)
             {
                 if (speed > 0)
                 {
-                    speed -= 5000 * delta;
+                    speed -= friction * delta;
                 }
                 else if (speed < 0)
                 {
-                    speed += 5000 * delta;
+                    speed += friction * delta;
                 }
-                if (timesPassedControl > 6)
+                //If column has not stopped correctly, it will still snap to controlPos after 0.9 seconds in tryingToStop-mode
+                stopCounter += delta; 
+                if (stopCounter > 0.9f)
                 {
                     YMovement = controlPos;
                     speed = 0;
+                    stoppedCompletely = true;
+                    //Console.WriteLine($"Column {Index} has stopped");
                 }
-
-
             }
+        }
+
+        public bool HasStopped()
+        {
+            return stoppedCompletely;
         }
 
     }

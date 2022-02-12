@@ -82,7 +82,7 @@ namespace Slots_Game
         //Determines whether to spin or not
         public void HandleSpinning()
         {
-            if (Raylib.IsKeyReleased(KeyboardKey.KEY_ENTER) && !spinning)
+            if (Raylib.IsKeyReleased(KeyboardKey.KEY_ENTER) && columns[4].HasStopped())
             {
                 spinning = true;
                 couldProvokeSpin = true;
@@ -94,10 +94,6 @@ namespace Slots_Game
                 if (timesSpun >= 3)
                 {
                     stoppedColumns++;
-                    // if (stoppedColumns >= 2)
-                    // {
-                    //     columns[stoppedColumns - 2].YMovement = controlPos;
-                    // }
                 }
             }
 
