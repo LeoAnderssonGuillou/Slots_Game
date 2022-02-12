@@ -37,7 +37,7 @@ namespace Slots_Game
             int xPos = 260 + (column.Index * (int)size.X);
 
             Raylib.DrawRectangle(xPos, yMovement+ distanceToController, (int)size.X, (int)size.Y, color);
-            Raylib.DrawRectangle((int)(xPos / 10), ((yMovement + distanceToController) / 10) + 600, (int)(size.X / 10), (int)(size.Y / 10), color);
+            //Raylib.DrawRectangle((int)(xPos / 10), ((yMovement + distanceToController) / 10) + 600, (int)(size.X / 10), (int)(size.Y / 10), color);
             
             //Red controllers
             // if (distanceToController == 0)

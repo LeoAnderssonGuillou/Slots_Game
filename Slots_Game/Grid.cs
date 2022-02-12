@@ -55,7 +55,7 @@ namespace Slots_Game
                 {
                     Slot slot = grid[x, y];
                     Slot controller = grid[x, 7];
-                    slot.Draw(y, columns[x]);     //Make controller.Pos.Y int here?
+                    slot.Draw(y, columns[x]);
                 }
             }
         }
@@ -82,6 +82,11 @@ namespace Slots_Game
         //Determines whether to spin or not
         public void HandleSpinning()
         {
+            if (columns[4].HasStopped())
+            {
+                FindWin(1);
+            }
+
             if (Raylib.IsKeyReleased(KeyboardKey.KEY_ENTER) && columns[4].HasStopped())
             {
                 spinning = true;
@@ -104,6 +109,26 @@ namespace Slots_Game
                 timesSpun = 0;
                 stoppedColumns = 0;
             }
+        }
+
+        public void FindWin(int start)
+        {
+            Slot currentSlot = grid[start, 4];
+            Slot previousSlot = grid[start - 1, 4];
+
+            if (currentSlot.Index == previousSlot.Index)
+            {
+                FindWin(start + 1);
+            }
+            else
+            {
+                Console.WriteLine(start);
+            }
+        }
+        
+        public void Proceed()
+        {
+
         }
 
         //Before every "ProvokeSpin", create 5 sets of 4 slots waiting to spawn
