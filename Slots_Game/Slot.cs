@@ -20,13 +20,13 @@ namespace Slots_Game
             {
                 //Color.PINK,
                 Color.RED,
-                Color.ORANGE,
                 Color.YELLOW,
                 Color.GREEN,
+                Color.ORANGE,
                 Color.SKYBLUE,
                 Color.PURPLE
             };
-            Index = gen.Next(0, 5);
+            Index = gen.Next(0, 2);
             color = colors[Index];
         }
 

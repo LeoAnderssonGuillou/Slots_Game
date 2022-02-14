@@ -20,6 +20,7 @@ namespace Slots_Game
         int controlPos =  (int)(100 + (3 * 240));
 
         Queue<Slot> waitingSlots = new Queue<Slot>();
+        int[] rows = new int[5];
 
 
         public Grid()
@@ -79,18 +80,21 @@ namespace Slots_Game
         }
 
 
+
         //Determines whether to spin or not
         public void HandleSpinning()
         {
             if (columns[4].HasStopped())
             {
-                FindWin(1);
+                Console.WriteLine(CalculateWinsBoard());
+                DrawWinLines();
             }
 
             if (Raylib.IsKeyReleased(KeyboardKey.KEY_ENTER) && columns[4].HasStopped())
             {
                 spinning = true;
                 couldProvokeSpin = true;
+                ResetRowsWinIndex();
             }
 
             if (couldProvokeSpin && spinning)
@@ -111,25 +115,71 @@ namespace Slots_Game
             }
         }
 
-        public void FindWin(int start)
+        public int CalculateWinsBoard()
         {
-            Slot currentSlot = grid[start, 4];
-            Slot previousSlot = grid[start - 1, 4];
+            int win = 0;
+            for (int y = 0; y < 4; y++)
+            {
+                win += CalculateWinsRow(y);
+            }
+            return win;
+        }
+
+        public int CalculateWinsRow(int y)
+        {
+            bool looking = true;
+            int x = 1;
+            int win = 0;
+            while (looking)
+            {
+                looking = ExamineSlot(x, y);
+                if (looking)
+                {
+                    win += 100;
+                    rows[y]++;
+                    x++;
+                }
+                if (x > 4)
+                {
+                    looking = false;
+                }
+            }
+            return win;
+        }
+
+        public void ResetRowsWinIndex()
+        {
+            for (int x = 0; x < 4; x++)
+            {
+                rows[x] = 0;
+            }
+        }
+
+        public bool ExamineSlot(int targetX , int y)
+        {
+            Slot currentSlot = grid[targetX, 4 + y];
+            Slot previousSlot = grid[targetX - 1, 4 + y];
 
             if (currentSlot.Index == previousSlot.Index)
             {
-                FindWin(start + 1);
+                return true;
             }
             else
             {
-                Console.WriteLine(start);
+                return false;
+            }
+        }
+
+        public void DrawWinLines()
+        {
+            int boxHeight = 10;
+            for (int x = 0; x < 4; x++)
+            {
+                int winSlots = rows[x];
+                Raylib.DrawRectangle(280, (220 - (boxHeight / 2)) + (240 * x), (260 * winSlots) - 40, boxHeight, Color.BLACK);
             }
         }
         
-        public void Proceed()
-        {
-
-        }
 
         //Before every "ProvokeSpin", create 5 sets of 4 slots waiting to spawn
         //Also resets movement variables of columns
@@ -148,7 +198,7 @@ namespace Slots_Game
         {
             for (int x = targets; x < gX; x++)
             {
-                Slot slot = columns[x].waitingSlots.Dequeue();
+                Slot slot = columns[x].WaitingSlots.Dequeue();
                 grid[x, 0] = slot;
             }
         }
