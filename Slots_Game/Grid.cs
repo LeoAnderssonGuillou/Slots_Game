@@ -17,6 +17,7 @@ namespace Slots_Game
         bool spinning = false;
         int timesSpun = 0;
         int stoppedColumns = 0;
+        bool hasCalculated = false;
         int controlPos =  (int)(100 + (3 * 240));
 
         Queue<Slot> waitingSlots = new Queue<Slot>();
@@ -86,7 +87,11 @@ namespace Slots_Game
         {
             if (columns[4].HasStopped())
             {
-                Console.WriteLine(CalculateWinsBoard());
+                if (!hasCalculated)
+                {
+                    int bro = CalculateWinsBoard();
+                    hasCalculated = true;
+                }
                 DrawWinLines();
             }
 
@@ -95,6 +100,7 @@ namespace Slots_Game
                 spinning = true;
                 couldProvokeSpin = true;
                 ResetRowsWinIndex();
+                hasCalculated = false;
             }
 
             if (couldProvokeSpin && spinning)
@@ -125,7 +131,7 @@ namespace Slots_Game
             return win;
         }
 
-        public int CalculateWinsRow(int y)
+        public int CalculateWinsRow(int y)  //Runs more than once
         {
             bool looking = true;
             int x = 1;
@@ -176,7 +182,8 @@ namespace Slots_Game
             for (int x = 0; x < 4; x++)
             {
                 int winSlots = rows[x];
-                Raylib.DrawRectangle(280, (220 - (boxHeight / 2)) + (240 * x), (260 * winSlots) - 40, boxHeight, Color.BLACK);
+                //Console.WriteLine(rows[x]);
+                Raylib.DrawRectangle(280, (220 - (boxHeight / 2)) + (240 * x), 280 + (280 * winSlots) - 40, boxHeight, Color.BLACK);
             }
         }
         
