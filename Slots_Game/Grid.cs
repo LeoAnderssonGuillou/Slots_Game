@@ -23,11 +23,14 @@ namespace Slots_Game
         Queue<Slot> waitingSlots = new Queue<Slot>();
         int[] rows = new int[5];
 
+        WinCalculator winCalculator;
+
 
         public Grid()
         {
             startPos = new Vector2(260, 100 - (slotSize.Y * 4));
             grid = new Slot[gX,gY];
+            winCalculator = new WinCalculator(grid);
 
             for (int i = 0; i < 5; i++)
             {
@@ -90,6 +93,7 @@ namespace Slots_Game
                 if (!hasCalculated)
                 {
                     int bro = CalculateWinsBoard();
+                    Console.WriteLine(bro);
                     hasCalculated = true;
                 }
                 DrawWinLines();
@@ -131,7 +135,7 @@ namespace Slots_Game
             return win;
         }
 
-        public int CalculateWinsRow(int y)  //Runs more than once
+        public int CalculateWinsRow(int y)
         {
             bool looking = true;
             int x = 1;
@@ -179,11 +183,10 @@ namespace Slots_Game
         public void DrawWinLines()
         {
             int boxHeight = 10;
-            for (int x = 0; x < 4; x++)
+            for (int y = 0; y < 4; y++)
             {
-                int winSlots = rows[x];
-                //Console.WriteLine(rows[x]);
-                Raylib.DrawRectangle(280, (220 - (boxHeight / 2)) + (240 * x), 280 + (280 * winSlots) - 40, boxHeight, Color.BLACK);
+                int winSlots = rows[y];
+                Raylib.DrawRectangle(280, (220 - (boxHeight / 2)) + (240 * y), 280 + (280 * winSlots) - 40, boxHeight, Color.BLACK);
             }
         }
         
@@ -236,3 +239,7 @@ namespace Slots_Game
 
     }
 }
+
+
+
+//payline - array of slots, specifically positions in grid
