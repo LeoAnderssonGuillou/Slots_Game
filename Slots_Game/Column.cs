@@ -15,8 +15,8 @@ namespace Slots_Game
         float speed = 0;                                        //Columns speed of movement
         float maxSpeed = 4000;
         bool tryingToStop = false;
-        float gravity = 18000;
-        float friction = 10000;
+        float gravity = 20000;
+        float friction = 12000;
         float stopCounter = 0;
         bool stoppedCompletely = false;
         //maxSpeed 2000, gravity 10000, friction 5000

@@ -92,7 +92,7 @@ namespace Slots_Game
             {
                 if (!hasCalculated)
                 {
-                    int bro = CalculateWinsBoard();
+                    int bro = winCalculator.CalculateWinsBoard();
                     Console.WriteLine(bro);
                     hasCalculated = true;
                 }
