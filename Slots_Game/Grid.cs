@@ -92,11 +92,12 @@ namespace Slots_Game
             {
                 if (!hasCalculated)
                 {
+                    UpdateSlotPositions();
                     int bro = winCalculator.CalculateWinsBoard();
                     Console.WriteLine(bro);
                     hasCalculated = true;
                 }
-                DrawWinLines();
+                winCalculator.DrawWinningLines();
             }
 
             if (Raylib.IsKeyReleased(KeyboardKey.KEY_ENTER) && columns[4].HasStopped())
@@ -177,6 +178,19 @@ namespace Slots_Game
             else
             {
                 return false;
+            }
+        }
+
+        //Assigns every slot its graphical position (used for drawing paylines)
+        public void UpdateSlotPositions()
+        {
+            for (int x = 0; x < gX; x++)
+            {
+                for (int y = 0; y < gY; y++)
+                {
+                    Slot slot = grid[x, y];
+                    slot.Pos = new Vector2(260 + (x * slotSize.X), -860 + (y * slotSize.Y));
+                }
             }
         }
 

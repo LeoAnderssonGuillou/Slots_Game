@@ -19,7 +19,7 @@ namespace Slots_Game
         //Ensures paylines contain the slots that are currently there
         public void RefreshPaylineContents()
         {
-            Slot[] horizontalOne = {grid[0,4], grid[1,4], grid[2,4], grid[3,4], grid[4,4]};
+            Slot[] horizontalOne = {grid[0,4], grid[1,5], grid[2,4], grid[3,7], grid[4,4]};
             payline1.Line = horizontalOne;
         }
     
@@ -71,8 +71,30 @@ namespace Slots_Game
 
         public void DrawWinningLines()
         {
-            Raylib.DrawLineEx(start, end, 10, Color.GREEN);
+            int thickness = 10;
+            Payline payline = payline1;
+            // Vector2 start = new Vector2(payline.Line[0].Pos.X, payline.Line[0].Pos.Y + 120 - (thickness / 2));
+            // Vector2 end = new Vector2(payline.Line[4].Pos.X, payline.Line[4].Pos.Y + 120 - (thickness / 2));
+            //Raylib.DrawLineEx(start, end, thickness, Color.BLACK);
+
+            Vector2 startFirst = new Vector2(payline.Line[0].Pos.X, payline.Line[0].Pos.Y + 120 - (thickness / 2));
+            Vector2 endFirst = new Vector2(payline.Line[0].Pos.X + 140, payline.Line[0].Pos.Y + 120 - (thickness / 2));
+            Raylib.DrawLineEx(startFirst, endFirst, thickness, Color.BLACK);
+
+            for (int i = 0; i < 4; i++)
+            {
+                Vector2 start = new Vector2(payline.Line[i].Pos.X + 140, payline.Line[i].Pos.Y + 120 - (thickness / 2));
+                Vector2 end = new Vector2(payline.Line[i + 1].Pos.X + 140, payline.Line[i + 1].Pos.Y + 120 - (thickness / 2));
+                Raylib.DrawLineEx(start, end, thickness, Color.BLACK);
+                Raylib.DrawCircleV(start, thickness / 2, Color.BLACK);
+            }
+
+            Vector2 startFinal = new Vector2(payline.Line[4].Pos.X + 140, payline.Line[4].Pos.Y + 120 - (thickness / 2));
+            Vector2 endFinal = new Vector2(payline.Line[4].Pos.X + 280, payline.Line[4].Pos.Y + 120 - (thickness / 2));
+            Raylib.DrawLineEx(startFinal, endFinal, thickness, Color.BLACK);
+            Raylib.DrawCircleV(startFinal, thickness / 2, Color.BLACK);
         }
+
 
 
     }
