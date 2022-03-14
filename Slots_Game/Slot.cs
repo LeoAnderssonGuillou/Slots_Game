@@ -8,7 +8,7 @@ namespace Slots_Game
     public class Slot
     {
         public int Index {get; set;}
-        public Vector2 Pos {get; set;}      //Is Pos important???? No?
+        public Vector2 Pos {get; set;}
         Vector2 size = new Vector2(280, 240);
         Color color = Color.YELLOW;
         Random gen = new Random();

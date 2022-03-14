@@ -13,10 +13,10 @@ namespace Slots_Game
 
         int controlPos =  (int)(100 + (3 * 240));               //Where YMovement wants to go. When a column is here, it means its slots are graphically where they should be based on their positions in the grid array.
         float speed = 0;                                        //Columns speed of movement
-        float maxSpeed = 4000;
+        float maxSpeed = 5000;
         bool tryingToStop = false;
-        float gravity = 20000;
-        float friction = 12000;
+        float gravity = 30000;
+        float friction = 15000;
         float stopCounter = 0;
         bool stoppedCompletely = false;
         //maxSpeed 2000, gravity 10000, friction 5000

@@ -21,7 +21,6 @@ namespace Slots_Game
         int controlPos =  (int)(100 + (3 * 240));
 
         Queue<Slot> waitingSlots = new Queue<Slot>();
-        int[] rows = new int[5];
 
         WinCalculator winCalculator;
 
@@ -104,7 +103,6 @@ namespace Slots_Game
             {
                 spinning = true;
                 couldProvokeSpin = true;
-                ResetRowsWinIndex();
                 hasCalculated = false;
             }
 
@@ -126,60 +124,6 @@ namespace Slots_Game
             }
         }
 
-        public int CalculateWinsBoard()
-        {
-            int win = 0;
-            for (int y = 0; y < 4; y++)
-            {
-                win += CalculateWinsRow(y);
-            }
-            return win;
-        }
-
-        public int CalculateWinsRow(int y)
-        {
-            bool looking = true;
-            int x = 1;
-            int win = 0;
-            while (looking)
-            {
-                looking = ExamineSlot(x, y);
-                if (looking)
-                {
-                    win += 100;
-                    rows[y]++;
-                    x++;
-                }
-                if (x > 4)
-                {
-                    looking = false;
-                }
-            }
-            return win;
-        }
-
-        public void ResetRowsWinIndex()
-        {
-            for (int x = 0; x < 4; x++)
-            {
-                rows[x] = 0;
-            }
-        }
-
-        public bool ExamineSlot(int targetX , int y)
-        {
-            Slot currentSlot = grid[targetX, 4 + y];
-            Slot previousSlot = grid[targetX - 1, 4 + y];
-
-            if (currentSlot.Index == previousSlot.Index)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
 
         //Assigns every slot its graphical position (used for drawing paylines)
         public void UpdateSlotPositions()
@@ -191,16 +135,6 @@ namespace Slots_Game
                     Slot slot = grid[x, y];
                     slot.Pos = new Vector2(260 + (x * slotSize.X), -860 + (y * slotSize.Y));
                 }
-            }
-        }
-
-        public void DrawWinLines()
-        {
-            int boxHeight = 10;
-            for (int y = 0; y < 4; y++)
-            {
-                int winSlots = rows[y];
-                Raylib.DrawRectangle(280, (220 - (boxHeight / 2)) + (240 * y), 280 + (280 * winSlots) - 40, boxHeight, Color.BLACK);
             }
         }
         
@@ -253,7 +187,3 @@ namespace Slots_Game
 
     }
 }
-
-
-
-//payline - array of slots, specifically positions in grid
