@@ -19,7 +19,6 @@ namespace Slots_Game
         float friction = 15000;
         float stopCounter = 0;
         bool stoppedCompletely = false;
-        //maxSpeed 2000, gravity 10000, friction 5000
 
         //Prepares a queue of 4 slots waiting to spawn
         //Also resets YMovement

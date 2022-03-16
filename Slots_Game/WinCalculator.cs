@@ -16,66 +16,66 @@ namespace Slots_Game
         {
             grid = grid_;
 
-            paylines.Add(new Payline(Color.BLACK));
-            paylines.Add(new Payline(Color.BLACK));
-            paylines.Add(new Payline(Color.BLACK));
-            paylines.Add(new Payline(Color.BLACK));
+            paylines.Add(new Payline(Color.BLACK, 0, 0));
+            paylines.Add(new Payline(Color.BLACK, 0, 1));
+            paylines.Add(new Payline(Color.BLACK, 0, 2));
+            paylines.Add(new Payline(Color.BLACK, 0, 3));
 
-            paylines.Add(new Payline(Color.GREEN));
-            paylines.Add(new Payline(Color.GREEN));
-            paylines.Add(new Payline(Color.GREEN));
-            paylines.Add(new Payline(Color.GREEN));
+            paylines.Add(new Payline(Color.GREEN, 0, 4));
+            paylines.Add(new Payline(Color.GREEN, 1, 0));
+            paylines.Add(new Payline(Color.GREEN, 1, 1));
+            paylines.Add(new Payline(Color.GREEN, 1, 2));
 
-            paylines.Add(new Payline(Color.WHITE));
-            paylines.Add(new Payline(Color.WHITE));
-            paylines.Add(new Payline(Color.WHITE));
-            paylines.Add(new Payline(Color.WHITE));
-            paylines.Add(new Payline(Color.WHITE));
-            paylines.Add(new Payline(Color.WHITE));
+            paylines.Add(new Payline(Color.WHITE, 1, 3));
+            paylines.Add(new Payline(Color.WHITE, 1, 4));
+            paylines.Add(new Payline(Color.WHITE, 2, 0));
+            paylines.Add(new Payline(Color.WHITE, 2, 1));
+            paylines.Add(new Payline(Color.WHITE, 2, 2));
+            paylines.Add(new Payline(Color.WHITE, 2, 3));
 
-            paylines.Add(new Payline(Color.ORANGE));
-            paylines.Add(new Payline(Color.ORANGE));
-            paylines.Add(new Payline(Color.ORANGE));
-            paylines.Add(new Payline(Color.ORANGE));
-            paylines.Add(new Payline(Color.ORANGE));
-            paylines.Add(new Payline(Color.ORANGE));
+            paylines.Add(new Payline(Color.ORANGE, 2, 4));
+            paylines.Add(new Payline(Color.ORANGE, 3, 0));
+            paylines.Add(new Payline(Color.ORANGE, 3, 1));
+            paylines.Add(new Payline(Color.ORANGE, 3, 2));
+            paylines.Add(new Payline(Color.ORANGE, 3, 3));
+            paylines.Add(new Payline(Color.ORANGE, 3, 4));
 
-            paylines.Add(new Payline(Color.PURPLE));
-            paylines.Add(new Payline(Color.PURPLE));
-            paylines.Add(new Payline(Color.PURPLE));
-            paylines.Add(new Payline(Color.PURPLE));
-            paylines.Add(new Payline(Color.PURPLE));
-            paylines.Add(new Payline(Color.PURPLE));
+            paylines.Add(new Payline(Color.PURPLE, 4, 0));
+            paylines.Add(new Payline(Color.PURPLE, 4, 1));
+            paylines.Add(new Payline(Color.PURPLE, 4, 2));
+            paylines.Add(new Payline(Color.PURPLE, 4, 3));
+            paylines.Add(new Payline(Color.PURPLE, 4, 4));
+            paylines.Add(new Payline(Color.PURPLE, 5, 0));
 
-            paylines.Add(new Payline(Color.GOLD));
-            paylines.Add(new Payline(Color.GOLD));
-            paylines.Add(new Payline(Color.GOLD));
-            paylines.Add(new Payline(Color.GOLD));
+            paylines.Add(new Payline(Color.GOLD, 5, 1));
+            paylines.Add(new Payline(Color.GOLD, 5, 2));
+            paylines.Add(new Payline(Color.GOLD, 5, 3));
+            paylines.Add(new Payline(Color.GOLD, 5, 4));
 
-            paylines.Add(new Payline(Color.PINK));
-            paylines.Add(new Payline(Color.PINK));
-            paylines.Add(new Payline(Color.PINK));
-            paylines.Add(new Payline(Color.PINK));
+            paylines.Add(new Payline(Color.PINK, 6, 0));
+            paylines.Add(new Payline(Color.PINK, 6, 1));
+            paylines.Add(new Payline(Color.PINK, 6, 2));
+            paylines.Add(new Payline(Color.PINK, 6, 3));
 
-            paylines.Add(new Payline(Color.BLUE));
-            paylines.Add(new Payline(Color.BLUE));
+            paylines.Add(new Payline(Color.BLUE, 6, 4));
+            paylines.Add(new Payline(Color.BLUE, 7, 0));
 
-            paylines.Add(new Payline(Color.BROWN));
-            paylines.Add(new Payline(Color.BROWN));
-            paylines.Add(new Payline(Color.BROWN));
-            paylines.Add(new Payline(Color.BROWN));
+            paylines.Add(new Payline(Color.BROWN, 7, 1));
+            paylines.Add(new Payline(Color.BROWN, 7, 2));
+            paylines.Add(new Payline(Color.BROWN, 7, 3));
+            paylines.Add(new Payline(Color.BROWN, 7, 4));
 
-            paylines.Add(new Payline(Color.LIME));
-            paylines.Add(new Payline(Color.LIME));
-            paylines.Add(new Payline(Color.LIME));
-            paylines.Add(new Payline(Color.LIME));
-            paylines.Add(new Payline(Color.LIME));
-            paylines.Add(new Payline(Color.LIME));
-            paylines.Add(new Payline(Color.LIME));
-            paylines.Add(new Payline(Color.LIME));
+            paylines.Add(new Payline(Color.LIME, 8, 0));
+            paylines.Add(new Payline(Color.LIME, 8, 1));
+            paylines.Add(new Payline(Color.LIME, 8, 2));
+            paylines.Add(new Payline(Color.LIME, 8, 3));
+            paylines.Add(new Payline(Color.LIME, 8, 4));
+            paylines.Add(new Payline(Color.LIME, 9, 0));
+            paylines.Add(new Payline(Color.LIME, 9, 1));
+            paylines.Add(new Payline(Color.LIME, 9, 2));
 
-            paylines.Add(new Payline(Color.MAROON));
-            paylines.Add(new Payline(Color.MAROON));
+            paylines.Add(new Payline(Color.VIOLET, 9, 3));
+            paylines.Add(new Payline(Color.VIOLET, 9, 4));
 
         }
 
@@ -203,7 +203,7 @@ namespace Slots_Game
             paylines[48].Line = Star1;
             Slot[] Star2 = {grid[0,6], grid[1,4], grid[2,7], grid[3,4], grid[4,6]};
             paylines[49].Line = Star2;
-            
+
         }
     
         public int CalculateWinsBoard()
@@ -212,7 +212,13 @@ namespace Slots_Game
             int win = 0;
             foreach (Payline payline in paylines)
             {
-                win += CalculateWinsPayline(payline);
+                payline.Won = false;
+                int paylineWin = CalculateWinsPayline(payline);
+                if (paylineWin > 0)
+                {
+                    payline.Won = true;
+                }
+                win += paylineWin;
             }
             return win;
         }
@@ -263,7 +269,10 @@ namespace Slots_Game
         {
             foreach (Payline payline in paylines)
             {
-                payline.Draw();
+                if (payline.Won)
+                {
+                    payline.Draw();
+                }
             }
         }
 

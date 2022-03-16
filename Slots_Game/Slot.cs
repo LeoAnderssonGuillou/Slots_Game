@@ -26,7 +26,7 @@ namespace Slots_Game
                 Color.SKYBLUE,
                 Color.PURPLE
             };
-            Index = gen.Next(0, 2);
+            Index = gen.Next(0, 5);
             color = colors[Index];
         }
 
@@ -37,6 +37,7 @@ namespace Slots_Game
             int xPos = 260 + (column.Index * (int)size.X);
 
             Raylib.DrawRectangle(xPos, yMovement+ distanceToController, (int)size.X, (int)size.Y, color);
+            Raylib.DrawRectangleLines(xPos, yMovement+ distanceToController, (int)size.X, (int)size.Y, Color.BLACK);
             //Raylib.DrawRectangle((int)(xPos / 10), ((yMovement + distanceToController) / 10) + 600, (int)(size.X / 10), (int)(size.Y / 10), color);
             
             //Red controllers
