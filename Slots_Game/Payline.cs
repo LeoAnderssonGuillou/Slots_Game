@@ -12,6 +12,12 @@ namespace Slots_Game
         public int WinLenght {get; set;}
         Color color = Color.BLACK;
 
+
+        public Payline(Color col)
+        {
+            color = col;
+        }
+
         public void Draw()
         {
             int thickness = 10;
