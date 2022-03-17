@@ -19,6 +19,7 @@ namespace Slots_Game
         int stoppedColumns = 0;
         bool hasCalculated = false;
         int controlPos =  (int)(100 + (3 * 240));
+        int win;
 
         Queue<Slot> waitingSlots = new Queue<Slot>();
 
@@ -85,18 +86,20 @@ namespace Slots_Game
 
 
         //Determines whether to spin or not
-        public void HandleSpinning()
+        public void HandleSpinning(int bet)
         {
             if (columns[4].HasStopped())
             {
                 if (!hasCalculated)
                 {
+                    win = 0;
                     UpdateSlotPositions();
-                    int bro = winCalculator.CalculateWinsBoard();
-                    Console.WriteLine(bro);
+                    win = winCalculator.CalculateWinsBoard(bet);
+                    Console.WriteLine(win);
                     hasCalculated = true;
                 }
                 winCalculator.DrawWinningLines();
+
             }
 
             if (Raylib.IsKeyReleased(KeyboardKey.KEY_ENTER) && columns[4].HasStopped())

@@ -14,6 +14,11 @@ namespace Slots_Game
             Raylib.InitWindow((int)winSize.X, (int)winSize.Y, "Gymnasiearbete");
             Raylib.SetTargetFPS(165);
 
+            //Colors
+            Color marginCol = GetCol("8f00db");
+            Color bgCol = GetCol("08003b");
+
+            Game game = new Game();
             Grid grid = new Grid();
             grid.Fill();
 
@@ -21,41 +26,56 @@ namespace Slots_Game
              while (!Raylib.WindowShouldClose())
             {
                 Raylib.BeginDrawing();
-                Raylib.ClearBackground(Color.WHITE);
+                Raylib.ClearBackground(bgCol);
                 float delta = Raylib.GetFrameTime();
 
 
                 //Board
                 Raylib.DrawRectangle(260, 100, 1400, 960, Color.BLACK);
-                //Slot
-                //Raylib.DrawRectangle(260, 100, 280, 240, Color.YELLOW);
-                Raylib.DrawRectangle(0, 610, 240, 96, Color.GRAY);
-                Raylib.DrawRectangle(0, 514, 240, 96, Color.LIGHTGRAY);
-                Raylib.DrawRectangle(0, 706, 240, 96, Color.LIGHTGRAY);
-                Raylib.DrawRectangle(0, 418, 240, 96, Color.BEIGE);
+                
+                //Side indicators
+                // Raylib.DrawRectangle(0, 610, 240, 96, Color.GRAY);
+                // Raylib.DrawRectangle(0, 514, 240, 96, Color.LIGHTGRAY);
+                // Raylib.DrawRectangle(0, 706, 240, 96, Color.LIGHTGRAY);
+                // Raylib.DrawRectangle(0, 418, 240, 96, Color.BEIGE);
 
                 //Grid
                 grid.DrawSlots();
                 grid.MoveSlots(delta);
 
                  //Top
-                Raylib.DrawRectangle(0, 0, (int)winSize.X, 100, Color.PURPLE);
+                Raylib.DrawRectangle(0, 0, (int)winSize.X, 100, marginCol);
                 //Bottom
-                Raylib.DrawRectangle(0, 1060, (int)winSize.X, 140, Color.PURPLE);
+                Raylib.DrawRectangle(0, 1060, (int)winSize.X, 140, marginCol);
+
+                //Money
+                game.DrawMoney();
+                game.DrawWin();
 
 
-                grid.HandleSpinning();
+
+                grid.HandleSpinning(game.Bet);
 
 
 
 
 
                 //FPS
-                int fps = Raylib.GetFPS();
-                Raylib.DrawText($"{fps}", 50, 50, 50, Color.GRAY);
+                // int fps = Raylib.GetFPS();
+                // Raylib.DrawText($"{fps}", 50, 50, 50, Color.GRAY);
 
                 Raylib.EndDrawing();
             }
         }
+
+
+        public static Color GetCol(string hex)
+        {
+            int r = int.Parse(hex.Substring(0, 2), System.Globalization.NumberStyles.HexNumber);
+            int g = int.Parse(hex.Substring(2, 2), System.Globalization.NumberStyles.HexNumber);
+            int b = int.Parse(hex.Substring(4, 2), System.Globalization.NumberStyles.HexNumber);
+            return new Color(r, g, b, 255);
+        }
+
     }
 }

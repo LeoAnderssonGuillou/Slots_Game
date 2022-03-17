@@ -15,8 +15,8 @@ namespace Slots_Game
         float speed = 0;                                        //Columns speed of movement
         float maxSpeed = 5000;
         bool tryingToStop = false;
-        float gravity = 30000;
-        float friction = 15000;
+        float gravity = 39000;
+        float friction = 20000;
         float stopCounter = 0;
         bool stoppedCompletely = false;
 
@@ -75,7 +75,7 @@ namespace Slots_Game
                 }
                 //If column has not stopped correctly, it will still snap to controlPos after 0.9 seconds in tryingToStop-mode
                 stopCounter += delta; 
-                if (stopCounter > 0.9f)
+                if (stopCounter > 0.6f)
                 {
                     YMovement = controlPos;
                     speed = 0;
@@ -90,6 +90,5 @@ namespace Slots_Game
         {
             return stoppedCompletely;
         }
-
     }
 }

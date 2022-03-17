@@ -206,7 +206,7 @@ namespace Slots_Game
 
         }
     
-        public int CalculateWinsBoard()
+        public int CalculateWinsBoard(int bet)
         {
             RefreshPaylineContents();
             int win = 0;
@@ -220,7 +220,7 @@ namespace Slots_Game
                 }
                 win += paylineWin;
             }
-            return win;
+            return CalculateRealWin(win, bet);
         }
 
         public int CalculateWinsPayline(Payline payline)
@@ -274,6 +274,11 @@ namespace Slots_Game
                     payline.Draw();
                 }
             }
+        }
+
+        public int CalculateRealWin(int winIndex, int bet)
+        {
+            return 5;
         }
 
 

@@ -26,7 +26,7 @@ namespace Slots_Game
                 Color.SKYBLUE,
                 Color.PURPLE
             };
-            Index = gen.Next(0, 5);
+            Index = gen.Next(0, 3);
             color = colors[Index];
         }
 
