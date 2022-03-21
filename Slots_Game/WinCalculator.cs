@@ -16,66 +16,66 @@ namespace Slots_Game
         {
             grid = grid_;
 
-            paylines.Add(new Payline(Color.BLACK, 0, 0));
-            paylines.Add(new Payline(Color.BLACK, 0, 1));
-            paylines.Add(new Payline(Color.BLACK, 0, 2));
-            paylines.Add(new Payline(Color.BLACK, 0, 3));
+            paylines.Add(new Payline("f7fa00", 0, 0));
+            paylines.Add(new Payline("57ffaf", 0, 1));
+            paylines.Add(new Payline("cd34db", 0, 2));
+            paylines.Add(new Payline("ef090a", 0, 3));
 
-            paylines.Add(new Payline(Color.GREEN, 0, 4));
-            paylines.Add(new Payline(Color.GREEN, 1, 0));
-            paylines.Add(new Payline(Color.GREEN, 1, 1));
-            paylines.Add(new Payline(Color.GREEN, 1, 2));
+            paylines.Add(new Payline("96d300", 0, 4));
+            paylines.Add(new Payline("fa706e", 1, 0));
+            paylines.Add(new Payline("c7ff00", 1, 1));
+            paylines.Add(new Payline("028d04", 1, 2));
 
-            paylines.Add(new Payline(Color.WHITE, 1, 3));
-            paylines.Add(new Payline(Color.WHITE, 1, 4));
-            paylines.Add(new Payline(Color.WHITE, 2, 0));
-            paylines.Add(new Payline(Color.WHITE, 2, 1));
-            paylines.Add(new Payline(Color.WHITE, 2, 2));
-            paylines.Add(new Payline(Color.WHITE, 2, 3));
+            paylines.Add(new Payline("c5fdb2", 1, 3));
+            paylines.Add(new Payline("0ffa8b", 1, 4));
+            paylines.Add(new Payline("09cc06", 2, 0));
+            paylines.Add(new Payline("fb91f4", 2, 1));
+            paylines.Add(new Payline("ffaabb", 2, 2));
+            paylines.Add(new Payline("f33105", 2, 3));
 
-            paylines.Add(new Payline(Color.ORANGE, 2, 4));
-            paylines.Add(new Payline(Color.ORANGE, 3, 0));
-            paylines.Add(new Payline(Color.ORANGE, 3, 1));
-            paylines.Add(new Payline(Color.ORANGE, 3, 2));
-            paylines.Add(new Payline(Color.ORANGE, 3, 3));
-            paylines.Add(new Payline(Color.ORANGE, 3, 4));
+            paylines.Add(new Payline("7efc6b", 2, 4));
+            paylines.Add(new Payline("f9af11", 3, 0));
+            paylines.Add(new Payline("01d2a1", 3, 1));
+            paylines.Add(new Payline("08faf9", 3, 2));
+            paylines.Add(new Payline("fb34d1", 3, 3));
+            paylines.Add(new Payline("ff64d9", 3, 4));
 
-            paylines.Add(new Payline(Color.PURPLE, 4, 0));
-            paylines.Add(new Payline(Color.PURPLE, 4, 1));
-            paylines.Add(new Payline(Color.PURPLE, 4, 2));
-            paylines.Add(new Payline(Color.PURPLE, 4, 3));
-            paylines.Add(new Payline(Color.PURPLE, 4, 4));
-            paylines.Add(new Payline(Color.PURPLE, 5, 0));
+            paylines.Add(new Payline("deff6e", 4, 0));
+            paylines.Add(new Payline("008a89", 4, 1));
+            paylines.Add(new Payline("5dd2fd", 4, 2));
+            paylines.Add(new Payline("099afe", 4, 3));
+            paylines.Add(new Payline("fa6901", 4, 4));
+            paylines.Add(new Payline("9ffb00", 5, 0));
 
-            paylines.Add(new Payline(Color.GOLD, 5, 1));
-            paylines.Add(new Payline(Color.GOLD, 5, 2));
-            paylines.Add(new Payline(Color.GOLD, 5, 3));
-            paylines.Add(new Payline(Color.GOLD, 5, 4));
+            paylines.Add(new Payline("da9300", 5, 1));
+            paylines.Add(new Payline("8bf5f1", 5, 2));
+            paylines.Add(new Payline("ff2d6d", 5, 3));
+            paylines.Add(new Payline("6430f2", 5, 4));
 
-            paylines.Add(new Payline(Color.PINK, 6, 0));
-            paylines.Add(new Payline(Color.PINK, 6, 1));
-            paylines.Add(new Payline(Color.PINK, 6, 2));
-            paylines.Add(new Payline(Color.PINK, 6, 3));
+            paylines.Add(new Payline("e9b645", 6, 0));
+            paylines.Add(new Payline("d8006e", 6, 1));
+            paylines.Add(new Payline("096b85", 6, 2));
+            paylines.Add(new Payline("c146fb", 6, 3));
 
-            paylines.Add(new Payline(Color.BLUE, 6, 4));
-            paylines.Add(new Payline(Color.BLUE, 7, 0));
+            paylines.Add(new Payline("043be7", 6, 4));
+            paylines.Add(new Payline("65c20e", 7, 0));
 
-            paylines.Add(new Payline(Color.BROWN, 7, 1));
-            paylines.Add(new Payline(Color.BROWN, 7, 2));
-            paylines.Add(new Payline(Color.BROWN, 7, 3));
-            paylines.Add(new Payline(Color.BROWN, 7, 4));
+            paylines.Add(new Payline("a8cceb", 7, 1));
+            paylines.Add(new Payline("fdd30e", 7, 2));
+            paylines.Add(new Payline("036a4b", 7, 3));
+            paylines.Add(new Payline("050f9b", 7, 4));
 
-            paylines.Add(new Payline(Color.LIME, 8, 0));
-            paylines.Add(new Payline(Color.LIME, 8, 1));
-            paylines.Add(new Payline(Color.LIME, 8, 2));
-            paylines.Add(new Payline(Color.LIME, 8, 3));
-            paylines.Add(new Payline(Color.LIME, 8, 4));
-            paylines.Add(new Payline(Color.LIME, 9, 0));
-            paylines.Add(new Payline(Color.LIME, 9, 1));
-            paylines.Add(new Payline(Color.LIME, 9, 2));
+            paylines.Add(new Payline("a0932b", 8, 0));
+            paylines.Add(new Payline("ae5a60", 8, 1));
+            paylines.Add(new Payline("6fb29c", 8, 2));
+            paylines.Add(new Payline("cae86b", 8, 3));
+            paylines.Add(new Payline("096ec3", 8, 4));
+            paylines.Add(new Payline("fd7ba7", 9, 0));
+            paylines.Add(new Payline("670f0a", 9, 1));
+            paylines.Add(new Payline("9cada5", 9, 2));
 
-            paylines.Add(new Payline(Color.VIOLET, 9, 3));
-            paylines.Add(new Payline(Color.VIOLET, 9, 4));
+            paylines.Add(new Payline("026a2c", 9, 3));
+            paylines.Add(new Payline("6649b2", 9, 4));
 
         }
 
@@ -271,7 +271,9 @@ namespace Slots_Game
             {
                 if (payline.Won)
                 {
-                    payline.Draw();
+                    payline.Draw(0);
+                    payline.Draw(1);
+                    payline.Draw(2);
                 }
             }
         }

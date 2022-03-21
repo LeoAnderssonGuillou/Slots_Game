@@ -55,7 +55,7 @@ namespace Slots_Game
                 game.DrawSpinButton();
 
                 //Logic
-                grid.HandleSpinning(game);
+                grid.HandleSpinning(game);  //STOP for click
                 grid.HandleWinning(game);
 
 
