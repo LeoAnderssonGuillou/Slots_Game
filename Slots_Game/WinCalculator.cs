@@ -278,7 +278,8 @@ namespace Slots_Game
 
         public int CalculateRealWin(int winIndex, int bet)
         {
-            return 5;
+            float win = (bet * 0.05f) * winIndex;
+            return (int)win;
         }
 
 

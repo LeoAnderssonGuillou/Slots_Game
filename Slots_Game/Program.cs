@@ -54,7 +54,8 @@ namespace Slots_Game
 
 
 
-                grid.HandleSpinning(game.Bet);
+                grid.HandleSpinning();
+                grid.HandleWinning(game);
 
 
 

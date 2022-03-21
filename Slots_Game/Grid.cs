@@ -86,22 +86,8 @@ namespace Slots_Game
 
 
         //Determines whether to spin or not
-        public void HandleSpinning(int bet)
+        public void HandleSpinning()
         {
-            if (columns[4].HasStopped())
-            {
-                if (!hasCalculated)
-                {
-                    win = 0;
-                    UpdateSlotPositions();
-                    win = winCalculator.CalculateWinsBoard(bet);
-                    Console.WriteLine(win);
-                    hasCalculated = true;
-                }
-                winCalculator.DrawWinningLines();
-
-            }
-
             if (Raylib.IsKeyReleased(KeyboardKey.KEY_ENTER) && columns[4].HasStopped())
             {
                 spinning = true;
@@ -125,6 +111,24 @@ namespace Slots_Game
                 timesSpun = 0;
                 stoppedColumns = 0;
             }
+        }
+
+        public void HandleWinning(Game game)
+        {
+            if (columns[4].HasStopped())
+            {
+                if (!hasCalculated)
+                {
+                    win = 0;
+                    UpdateSlotPositions();
+                    win = winCalculator.CalculateWinsBoard(game.Bet); //here
+                    Console.WriteLine(win);
+                    hasCalculated = true;
+                }
+                winCalculator.DrawWinningLines();
+
+            }
+            game.Win = win;
         }
 
 

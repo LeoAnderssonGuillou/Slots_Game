@@ -8,8 +8,9 @@ namespace Slots_Game
     public class Game
     {
         public int Bet {get; set;} = 1000;
+        public int Win {get; set;} = 0;
         int money = 100000;
-        int win = 0;
+        
 
 
         public void DrawMoney()
@@ -19,7 +20,7 @@ namespace Slots_Game
 
         public void DrawWin()
         {
-            CenteredText($"{win}", 1920, 75, 1080, 0);
+            CenteredText($"{Win}", 1920, 75, 1080, 0);
             CenteredText("WIN", 1920, 30, 1155, 0);
         }
 
