@@ -86,13 +86,14 @@ namespace Slots_Game
 
 
         //Determines whether to spin or not
-        public void HandleSpinning()
+        public void HandleSpinning(Game game)
         {
             if (Raylib.IsKeyReleased(KeyboardKey.KEY_ENTER) && columns[4].HasStopped())
             {
                 spinning = true;
                 couldProvokeSpin = true;
                 hasCalculated = false;
+                game.ChangeMoney(-game.Bet);
             }
 
             if (couldProvokeSpin && spinning)
@@ -121,14 +122,15 @@ namespace Slots_Game
                 {
                     win = 0;
                     UpdateSlotPositions();
-                    win = winCalculator.CalculateWinsBoard(game.Bet); //here
+                    win = winCalculator.CalculateWinsBoard(game.Bet);
                     Console.WriteLine(win);
                     hasCalculated = true;
+                    game.Win = win;
+                    game.ChangeMoney(win);
                 }
                 winCalculator.DrawWinningLines();
 
             }
-            game.Win = win;
         }
 
 

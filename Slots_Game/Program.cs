@@ -48,17 +48,15 @@ namespace Slots_Game
                 //Bottom
                 Raylib.DrawRectangle(0, 1060, (int)winSize.X, 140, marginCol);
 
-                //Money
+                //Text
                 game.DrawMoney();
                 game.DrawWin();
+                game.DrawBet();
+                game.DrawSpinButton();
 
-
-
-                grid.HandleSpinning();
+                //Logic
+                grid.HandleSpinning(game);
                 grid.HandleWinning(game);
-
-
-
 
 
                 //FPS
