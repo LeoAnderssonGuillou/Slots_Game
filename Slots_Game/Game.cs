@@ -12,7 +12,6 @@ namespace Slots_Game
         int money = 1000;
         
 
-
         public void DrawMoney()
         {
             CenteredText($"${money}", 1920, 50, 30, 0);
@@ -30,16 +29,30 @@ namespace Slots_Game
             CenteredText($"{Bet}", 960, 46, 1130, 0);
         }
 
-        public void DrawSpinButton()
+        //Draws the SPIN! button and checks if it is being clicked
+        public bool HandleButton()
         {
             DrawButton("SPIN!", 960, 80, 1094, 960);
+            Rectangle hitbox = new Rectangle(1286, 1079, 308, 100);
+            bool hovering = Raylib.CheckCollisionPointRec(Raylib.GetMousePosition(), hitbox);
+            bool clicking = Raylib.IsMouseButtonDown(MouseButton.MOUSE_LEFT_BUTTON);
+            if (hovering && clicking)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
+        //Way of easily drawing Raylib text, centered on the x-axis
         public void CenteredText(string text, int fullWidth, int fontSize, int yPos, int xStart)
         {
             Raylib.DrawText(text, xStart + (fullWidth - Raylib.MeasureText(text, fontSize)) / 2, yPos, fontSize, Color.WHITE);
         }
 
+        //Draws a button with a "capsule" look
         public void DrawButton(string text, int fullWidth, int fontSize, int yPos, int xStart)
         {
             int margin = 20;
@@ -51,11 +64,6 @@ namespace Slots_Game
             Raylib.DrawCircle(x, yPos + (fontSize / 2) - 5, buttonHeight / 2, Color.GREEN);
             Raylib.DrawCircle(x + textLenght, yPos + (fontSize / 2) - 5, buttonHeight / 2, Color.GREEN);
             Raylib.DrawText(text, x, yPos, fontSize, Color.WHITE);
-
-            Console.WriteLine("x: " + x);
-            Console.WriteLine("y: " + (yPos - 5 - (margin / 2)));
-            Console.WriteLine("xSize: " + textLenght);
-            Console.WriteLine("ySize: " + buttonHeight);
         }
 
         public void ChangeMoney(int change)

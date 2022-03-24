@@ -16,21 +16,25 @@ namespace Slots_Game
         Color darkColor;
         Color midColor;
         Color color;
-        int trueThickness = 12;
         int thickness;
         int xOffset;
         int yOffset;
-
+        
+        //Color thickness of lines (for 3D-effect)
+        int trueThickness = 16;
+        int midThickness = 12;
+        int centerThickness = 6;
 
         public Payline(string col, int x, int y)
         {
             trueColor = GetCol(col, 0);
-            midColor = GetCol(col, 40);
-            darkColor = GetCol(col, 100);
+            midColor = GetCol(col, 22);
+            darkColor = GetCol(col, 60);
             xOffset = x * 5;
             yOffset = y * 18;
         }
 
+        //Draws a payline. In reality, this is done three times for every paylien with varying thicness and color to create a 3D-effect
         public void Draw(int brightness)
         {
             switch (brightness)
@@ -40,18 +44,20 @@ namespace Slots_Game
                     color = darkColor;
                     break;
                 case 1:
-                    thickness = 8;
+                    thickness = midThickness;
                     color = midColor;
                     break;
                 case 2:
-                    thickness = 4;
+                    thickness = centerThickness;
                     color = trueColor;
                     break;
             }
+            //Draws the first part of the payline
             Vector2 startFirst = new Vector2(Line[0].Pos.X, Line[0].Pos.Y + 120 - (trueThickness / 2) + yOffset);
             Vector2 endFirst = new Vector2(Line[0].Pos.X + 140 + xOffset, Line[0].Pos.Y + 120 - (trueThickness / 2) + yOffset);
             Raylib.DrawLineEx(startFirst, endFirst, thickness, color);
 
+            //Draws all parts of the payline, except start and finish
             for (int i = 0; i < 4; i++)
             {
                 Vector2 start = new Vector2(Line[i].Pos.X + 140 + xOffset, Line[i].Pos.Y + 120 - (trueThickness / 2) + yOffset);
@@ -61,12 +67,14 @@ namespace Slots_Game
                 Raylib.DrawCircleV(start, thickness / 2, color);
             }
 
+            //Draws the final part of the payline
             Vector2 startFinal = new Vector2(Line[4].Pos.X + 140 + xOffset, Line[4].Pos.Y + 120 - (trueThickness / 2) + yOffset);
             Vector2 endFinal = new Vector2(Line[4].Pos.X + 280, Line[4].Pos.Y + 120 - (trueThickness / 2) + yOffset);
             Raylib.DrawLineEx(startFinal, endFinal, thickness, color);
             Raylib.DrawCircleV(startFinal, thickness / 2, color);
         }
 
+        //Converts a hex code to a Raylib Color, with the option to make it darker with an int
         public static Color GetCol(string hex, int dark)
         {
             int r = int.Parse(hex.Substring(0, 2), System.Globalization.NumberStyles.HexNumber);

@@ -86,9 +86,9 @@ namespace Slots_Game
 
 
         //Determines whether to spin or not
-        public void HandleSpinning(Game game)
+        public void HandleSpinning(Game game, bool clickingButton)
         {
-            if (Raylib.IsKeyReleased(KeyboardKey.KEY_ENTER) && columns[4].HasStopped())
+            if (Raylib.IsKeyReleased(KeyboardKey.KEY_ENTER) && columns[4].HasStopped() || clickingButton && columns[4].HasStopped())
             {
                 spinning = true;
                 couldProvokeSpin = true;

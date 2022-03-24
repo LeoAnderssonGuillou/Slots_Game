@@ -52,10 +52,10 @@ namespace Slots_Game
                 game.DrawMoney();
                 game.DrawWin();
                 game.DrawBet();
-                game.DrawSpinButton();
+                bool clickingButton = game.HandleButton();
 
                 //Logic
-                grid.HandleSpinning(game);  //STOP for click
+                grid.HandleSpinning(game, clickingButton);
                 grid.HandleWinning(game);
 
 

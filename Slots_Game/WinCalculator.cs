@@ -16,6 +16,7 @@ namespace Slots_Game
         {
             grid = grid_;
 
+            //Creation of every payline, defining color and offset position
             paylines.Add(new Payline("f7fa00", 0, 0));
             paylines.Add(new Payline("57ffaf", 0, 1));
             paylines.Add(new Payline("cd34db", 0, 2));
@@ -79,10 +80,11 @@ namespace Slots_Game
 
         }
 
-        //Ensures paylines contain the slots that are currently there
+        //Defines paylines
+        //Runs every time board stops, ensuring paylines contain the slots that are currently there
         public void RefreshPaylineContents()
         {
-            //Straight lines
+            //"Straight lines"
             Slot[] horizontal1 = {grid[0,5], grid[1,5], grid[2,5], grid[3,5], grid[4,5]};
             paylines[0].Line = horizontal1;
             Slot[] horizontal2 = {grid[0,6], grid[1,6], grid[2,6], grid[3,6], grid[4,6]};
@@ -92,7 +94,7 @@ namespace Slots_Game
             Slot[] horizontal4 = {grid[0,7], grid[1,7], grid[2,7], grid[3,7], grid[4,7]};
             paylines[3].Line = horizontal4;
 
-            //Triangles
+            //"Triangles"
             Slot[] Triangle1 = {grid[0,4], grid[1,5], grid[2,6], grid[3,5], grid[4,4]};
             paylines[4].Line = Triangle1;
             Slot[] Triangle2 = {grid[0,7], grid[1,6], grid[2,5], grid[3,6], grid[4,7]};
@@ -102,7 +104,7 @@ namespace Slots_Game
             Slot[] Triangle4 = {grid[0,6], grid[1,5], grid[2,4], grid[3,5], grid[4,6]};
             paylines[7].Line = Triangle4;
 
-            //W's
+            //"W's"
             Slot[] W1 = {grid[0,4], grid[1,5], grid[2,4], grid[3,5], grid[4,4]};
             paylines[8].Line = W1;
             Slot[] W2 = {grid[0,7], grid[1,6], grid[2,7], grid[3,6], grid[4,7]};
@@ -116,7 +118,7 @@ namespace Slots_Game
             Slot[] W6 = {grid[0,6], grid[1,5], grid[2,6], grid[3,5], grid[4,6]};
             paylines[13].Line = W6;
 
-            //Birds
+            //"Birds"
             Slot[] Bird1 = {grid[0,4], grid[1,4], grid[2,5], grid[3,4], grid[4,4]};
             paylines[14].Line = Bird1;
             Slot[] Bird2 = {grid[0,7], grid[1,7], grid[2,6], grid[3,7], grid[4,7]};
@@ -130,7 +132,7 @@ namespace Slots_Game
             Slot[] Bird6 = {grid[0,5], grid[1,5], grid[2,4], grid[3,5], grid[4,5]};
             paylines[19].Line = Bird6;
 
-            //Mouths
+            //"Mouths"
             Slot[] Mouth1 = {grid[0,5], grid[1,6], grid[2,6], grid[3,6], grid[4,5]};
             paylines[20].Line = Mouth1;
             Slot[] Mouth2 = {grid[0,6], grid[1,5], grid[2,5], grid[3,5], grid[4,6]};
@@ -144,7 +146,7 @@ namespace Slots_Game
             Slot[] Mouth6 = {grid[0,4], grid[1,5], grid[2,5], grid[3,5], grid[4,4]};
             paylines[25].Line = Mouth6;
 
-            //Faces
+            //"Faces"
             Slot[] Face1 = {grid[0,6], grid[1,4], grid[2,4], grid[3,4], grid[4,6]};
             paylines[26].Line = Face1;
             Slot[] Face2 = {grid[0,4], grid[1,7], grid[2,7], grid[3,7], grid[4,5]};
@@ -154,7 +156,7 @@ namespace Slots_Game
             Slot[] Face4 = {grid[0,4], grid[1,6], grid[2,6], grid[3,6], grid[4,4]};
             paylines[29].Line = Face4;
 
-            //Swans
+            //"Swans"
             Slot[] Swan1 = {grid[0,6], grid[1,6], grid[2,4], grid[3,6], grid[4,6]};
             paylines[30].Line = Swan1;
             Slot[] Swan2 = {grid[0,5], grid[1,5], grid[2,7], grid[3,5], grid[4,5]};
@@ -164,13 +166,13 @@ namespace Slots_Game
             Slot[] Swan4 = {grid[0,7], grid[1,7], grid[2,5], grid[3,7], grid[4,7]};
             paylines[33].Line = Swan4;
 
-            //Statues
+            //"Statues"
             Slot[] Statue1 = {grid[0,7], grid[1,7], grid[2,4], grid[3,7], grid[4,7]};
             paylines[34].Line = Statue1;
             Slot[] Statue2 = {grid[0,4], grid[1,4], grid[2,7], grid[3,4], grid[4,4]};
             paylines[35].Line = Statue2;
 
-            //Sticks
+            //"Sticks"
             Slot[] Stick1 = {grid[0,7], grid[1,6], grid[2,5], grid[3,4], grid[4,4]};
             paylines[36].Line = Stick1;
             Slot[] Stick2 = {grid[0,4], grid[1,5], grid[2,6], grid[3,7], grid[4,7]};
@@ -180,7 +182,7 @@ namespace Slots_Game
             Slot[] Stick4 = {grid[0,7], grid[1,7], grid[2,6], grid[3,5], grid[4,4]};
             paylines[39].Line = Stick4;
 
-            //Boomerangs
+            //"Boomerangs"
             Slot[] Boomerang1 = {grid[0,6], grid[1,5], grid[2,4], grid[3,4], grid[4,4]};
             paylines[40].Line = Boomerang1;
             Slot[] Boomerang2 = {grid[0,5], grid[1,6], grid[2,7], grid[3,7], grid[4,7]};
@@ -198,7 +200,7 @@ namespace Slots_Game
             Slot[] Boomerang8 = {grid[0,6], grid[1,6], grid[2,6], grid[3,5], grid[4,4]};
             paylines[47].Line = Boomerang8;
 
-            //Stars
+            //"Stars"
             Slot[] Star1 = {grid[0,5], grid[1,7], grid[2,4], grid[3,7], grid[4,5]};
             paylines[48].Line = Star1;
             Slot[] Star2 = {grid[0,6], grid[1,4], grid[2,7], grid[3,4], grid[4,6]};
@@ -206,6 +208,7 @@ namespace Slots_Game
 
         }
     
+        //Returns total winnings of current board
         public int CalculateWinsBoard(int bet)
         {
             RefreshPaylineContents();
@@ -223,6 +226,7 @@ namespace Slots_Game
             return CalculateRealWin(win, bet);
         }
 
+        //Calculates winnings of a single payline
         public int CalculateWinsPayline(Payline payline)
         {
             bool looking = true;
@@ -250,6 +254,7 @@ namespace Slots_Game
             return win;
         }
 
+        //Examines if a slot is the same as the previous slot on the payline
         public bool ExamineSlot(int i , Payline payline)
         {
             Slot currentSlot = payline.Line[i];
@@ -265,6 +270,7 @@ namespace Slots_Game
             }
         }
 
+        //Draws paylines containing winning streak
         public void DrawWinningLines()
         {
             foreach (Payline payline in paylines)
@@ -278,6 +284,7 @@ namespace Slots_Game
             }
         }
 
+        //Takes the standardised units retured from CalculateWinsPayline, and calculates the actual win based on what was bet 
         public int CalculateRealWin(int winIndex, int bet)
         {
             float win = (bet * 0.05f) * winIndex;
