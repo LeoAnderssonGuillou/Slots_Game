@@ -5,7 +5,7 @@ using Raylib_cs;
 
 namespace Slots_Game
 {
-    public class Slot
+    public class Symbol
     {
         public int Index {get; set;}
         public Vector2 Pos {get; set;}
@@ -14,7 +14,7 @@ namespace Slots_Game
         Random gen = new Random();
 
 
-        public Slot()
+        public Symbol()
         {
             List<Color> colors = new List<Color>()
             {
@@ -30,11 +30,11 @@ namespace Slots_Game
             color = colors[Index];
         }
 
-        public void Draw(int y, Column column)
+        public void Draw(int y, Reel reel)
         {
-            int yMovement = (int)column.YMovement;
+            int yMovement = (int)reel.YMovement;
             int distanceToController = (y - 7) * (int)size.Y;
-            int xPos = 260 + (column.Index * (int)size.X);
+            int xPos = 260 + (reel.Index * (int)size.X);
 
             Raylib.DrawRectangle(xPos, yMovement+ distanceToController, (int)size.X, (int)size.Y, color);
             Raylib.DrawRectangleLines(xPos, yMovement+ distanceToController, (int)size.X, (int)size.Y, Color.BLACK);

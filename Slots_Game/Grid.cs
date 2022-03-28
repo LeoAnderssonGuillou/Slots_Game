@@ -9,32 +9,30 @@ namespace Slots_Game
     {   
         int gX = 5;
         int gY = 12;
-        Slot[,] grid;
-        Vector2 slotSize = new Vector2(280, 240);
+        Symbol[,] grid;
+        Vector2 symbolSize = new Vector2(280, 240);
         Vector2 startPos;
-        Column[] columns = new Column[5];
+        Reel[] reels = new Reel[5];
         bool couldProvokeSpin = false;
         bool spinning = false;
         int timesSpun = 0;
-        int stoppedColumns = 0;
+        int stoppedReels = 0;
         bool hasCalculated = false;
         int controlPos =  (int)(100 + (3 * 240));
         int win;
-
-        Queue<Slot> waitingSlots = new Queue<Slot>();
 
         WinCalculator winCalculator;
 
 
         public Grid()
         {
-            startPos = new Vector2(260, 100 - (slotSize.Y * 4));
-            grid = new Slot[gX,gY];
+            startPos = new Vector2(260, 100 - (symbolSize.Y * 4));
+            grid = new Symbol[gX,gY];
             winCalculator = new WinCalculator(grid);
 
             for (int i = 0; i < 5; i++)
             {
-                columns[i] = new Column() {Index = i};
+                reels[i] = new Reel() {Index = i};
             } 
         }
 
@@ -45,39 +43,37 @@ namespace Slots_Game
             {
                 for (int y = 0; y < gY; y++)
                 {
-                    grid[x, y] = new Slot();
-                    Slot slot = grid[x, y];
+                    grid[x, y] = new Symbol();
                 }
             }
         }
 
 
-        public void DrawSlots()
+        public void DrawSymbols()
         {
             for (int x = 0; x < gX; x++)
             {
                 for (int y = 0; y < gY; y++)
                 {
-                    Slot slot = grid[x, y];
-                    Slot controller = grid[x, 7];
-                    slot.Draw(y, columns[x]);
+                    Symbol symbol = grid[x, y];
+                    symbol.Draw(y, reels[x]);
                 }
             }
         }
 
 
-        public void MoveSlots(float delta)
+        public void MoveSymbols(float delta)
         {
             for (int x = 0; x < 5; x++)
             {
-                columns[x].Move(delta);
+                reels[x].Move(delta);
             }
             couldProvokeSpin = false;
 
-            //Runs when a full set of 4 slots has passed the rightmost column.
-            //If all/some columns are still spinning, this means one or more columns should "spin" again.
-            //If the rigtmost column was the last column spinning, it means the whole board should stop. (HandleSpinning)
-            if (columns[4].YMovement > controlPos)
+            //Runs when a full set of 4 symbols has passed the rightmost reel.
+            //If all/some reels are still spinning, this means one or more reels should "spin" again.
+            //If the rigtmost reel was the last reel spinning, it means the whole board should stop. (HandleSpinning)
+            if (reels[4].YMovement > controlPos)
             {
                 couldProvokeSpin = true;
             }
@@ -88,7 +84,7 @@ namespace Slots_Game
         //Determines whether to spin or not
         public void HandleSpinning(Game game, bool clickingButton)
         {
-            if (Raylib.IsKeyReleased(KeyboardKey.KEY_ENTER) && columns[4].HasStopped() || clickingButton && columns[4].HasStopped())
+            if (Raylib.IsKeyReleased(KeyboardKey.KEY_ENTER) && reels[4].HasStopped() || clickingButton && reels[4].HasStopped())
             {
                 spinning = true;
                 couldProvokeSpin = true;
@@ -98,32 +94,31 @@ namespace Slots_Game
 
             if (couldProvokeSpin && spinning)
             {
-                ProvokeSpin(stoppedColumns);
+                ProvokeSpin(stoppedReels);
                 if (timesSpun >= 3)
                 {
-                    stoppedColumns++;
+                    stoppedReels++;
                 }
             }
 
-            if (stoppedColumns == 5)
+            if (stoppedReels == 5)
             {
                 spinning = false;
                 couldProvokeSpin = false;
                 timesSpun = 0;
-                stoppedColumns = 0;
+                stoppedReels = 0;
             }
         }
 
         public void HandleWinning(Game game)
         {
-            if (columns[4].HasStopped())
+            if (reels[4].HasStopped())
             {
                 if (!hasCalculated)
                 {
                     win = 0;
-                    UpdateSlotPositions();
+                    UpdateSymbolPositions();
                     win = winCalculator.CalculateWinsBoard(game.Bet);
-                    Console.WriteLine(win);
                     hasCalculated = true;
                     game.Win = win;
                     game.ChangeMoney(win);
@@ -134,62 +129,62 @@ namespace Slots_Game
         }
 
 
-        //Assigns every slot its graphical position (used for drawing paylines)
-        public void UpdateSlotPositions()
+        //Assigns every symbol its graphical position (used for drawing paylines)
+        public void UpdateSymbolPositions()
         {
             for (int x = 0; x < gX; x++)
             {
                 for (int y = 0; y < gY; y++)
                 {
-                    Slot slot = grid[x, y];
-                    slot.Pos = new Vector2(260 + (x * slotSize.X), -860 + (y * slotSize.Y));
+                    Symbol symbol = grid[x, y];
+                    symbol.Pos = new Vector2(260 + (x * symbolSize.X), -860 + (y * symbolSize.Y));
                 }
             }
         }
         
 
-        //Before every "ProvokeSpin", create 5 sets of 4 slots waiting to spawn
-        //Also resets movement variables of columns
-        public void ReloadColumns(int targets)
+        //Before every "ProvokeSpin", create 5 sets of 4 symbols waiting to spawn
+        //Also resets movement variables of reels
+        public void ReloadReels(int targets)
         {
             for (int i = targets; i < 5; i++)
             {
-                columns[i].Reload();
-                columns[i].Reset();
+                reels[i].Reload();
+                reels[i].Reset();
             } 
         }
 
 
-        //Create new slots at top
-        public void CreateSlotsAtTop(int targets, int i)
+        //Create new symbols at top
+        public void CreateSymbolsAtTop(int targets, int i)
         {
             for (int x = targets; x < gX; x++)
             {
-                Slot slot = columns[x].WaitingSlots.Dequeue();
-                grid[x, 0] = slot;
+                Symbol symbol = reels[x].WaitingSymbols.Dequeue();
+                grid[x, 0] = symbol;
             }
         }
 
-        //Provoking a spin moves all slots down 4 times and creates new ones at top
-        //This only refers to the slots being moved in the "grid" 2D-array. Graphically, they remain in place
-        //Columns' YMovement being reset causes them to move down graphically
+        //Provoking a spin moves all symbols down 4 times and creates new ones at top
+        //This only refers to the symbols being moved in the "grid" 2D-array. Graphically, they remain in place
+        //Reels' YMovement being reset causes them to move down graphically
         public void ProvokeSpin(int targets)
         {
-            ReloadColumns(targets);
+            ReloadReels(targets);
 
-            //Moves all slots down and creates new ones 4 times
+            //Moves all symbols down and creates new ones 4 times
             for (int i = 0; i < 4; i++)
             {
-                //Move all slots down - Overrides last row
+                //Move all symbols down - Overrides last row
                 for (int x = gX - 1; x >= targets; x--)
                 {
                     for (int y = gY - 2; y >= 0; y--)
                     {
-                        Slot slot = grid[x, y];
-                        grid[x, y + 1] = slot;
+                        Symbol symbol = grid[x, y];
+                        grid[x, y + 1] = symbol;
                     }
                 }
-                CreateSlotsAtTop(targets, i);
+                CreateSymbolsAtTop(targets, i);
             }
             timesSpun++;
         }

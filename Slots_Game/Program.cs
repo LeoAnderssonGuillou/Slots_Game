@@ -40,8 +40,8 @@ namespace Slots_Game
                 // Raylib.DrawRectangle(0, 418, 240, 96, Color.BEIGE);
 
                 //Grid
-                grid.DrawSlots();
-                grid.MoveSlots(delta);
+                grid.DrawSymbols();
+                grid.MoveSymbols(delta);
 
                  //Top
                 Raylib.DrawRectangle(0, 0, (int)winSize.X, 100, marginCol);

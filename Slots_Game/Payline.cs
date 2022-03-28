@@ -8,7 +8,7 @@ namespace Slots_Game
 {
     public class Payline
     {
-        public Slot[] Line {get; set;}
+        public Symbol[] Line {get; set;}
         public int WinLenght {get; set;}
         public bool Won {get; set;}
 
