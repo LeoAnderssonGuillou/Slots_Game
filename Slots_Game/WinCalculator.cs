@@ -277,9 +277,7 @@ namespace Slots_Game
             {
                 if (payline.Won)
                 {
-                    payline.Draw(0);
-                    payline.Draw(1);
-                    payline.Draw(2);
+                    payline.Draw();
                 }
             }
         }

@@ -19,6 +19,7 @@ namespace Slots_Game
         float friction = 20000;
         float stopCounter = 0;
         bool stoppedCompletely = false;
+        Random generator = new Random();
 
         //Prepares a queue of 4 symbols waiting to spawn
         //Also resets YMovement
@@ -26,7 +27,15 @@ namespace Slots_Game
         {
             for (int i = 0; i < 4; i++)
             {
-                Symbol symbol = new Symbol();
+                Symbol symbol;
+                if (generator.Next(0, 2) == 0)
+                {
+                    symbol = new StandardSymbol();
+                }
+                else
+                {
+                    symbol = new Wild();
+                }
                 WaitingSymbols.Enqueue(symbol);
             }
         }

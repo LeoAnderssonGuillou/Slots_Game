@@ -5,30 +5,16 @@ using Raylib_cs;
 
 namespace Slots_Game
 {
-    public class Symbol
+    public class Symbol : GameObject    
     {
         public int Index {get; set;}
         public Vector2 Pos {get; set;}
+        protected Color color = Color.YELLOW;
+        protected Random gen = new Random();
+
         Vector2 size = new Vector2(280, 240);
-        Color color = Color.YELLOW;
-        Random gen = new Random();
 
 
-        public Symbol()
-        {
-            List<Color> colors = new List<Color>()
-            {
-                //Color.PINK,
-                Color.RED,
-                Color.YELLOW,
-                Color.GREEN,
-                Color.ORANGE,
-                Color.SKYBLUE,
-                Color.PURPLE
-            };
-            Index = gen.Next(0, 3);
-            color = colors[Index];
-        }
 
         public void Draw(int y, Reel reel)
         {

@@ -43,7 +43,7 @@ namespace Slots_Game
             {
                 for (int y = 0; y < gY; y++)
                 {
-                    grid[x, y] = new Symbol();
+                    grid[x, y] = new StandardSymbol();
                 }
             }
         }
@@ -70,9 +70,7 @@ namespace Slots_Game
             }
             couldProvokeSpin = false;
 
-            //Runs when a full set of 4 symbols has passed the rightmost reel.
-            //If all/some reels are still spinning, this means one or more reels should "spin" again.
-            //If the rigtmost reel was the last reel spinning, it means the whole board should stop. (HandleSpinning)
+
             if (reels[4].YMovement > controlPos)
             {
                 couldProvokeSpin = true;

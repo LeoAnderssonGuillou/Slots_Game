@@ -6,7 +6,7 @@ using Raylib_cs;
 
 namespace Slots_Game
 {
-    public class Payline
+    public class Payline : GameObject
     {
         public Symbol[] Line {get; set;}
         public int WinLenght {get; set;}
@@ -34,44 +34,48 @@ namespace Slots_Game
             yOffset = y * 18;
         }
 
-        //Draws a payline. In reality, this is done three times for every paylien with varying thicness and color to create a 3D-effect
-        public void Draw(int brightness)
+        //Draws a payline. Technically draws three lines with varying thicness and color to create a 3D-effect
+        public void Draw()
         {
-            switch (brightness)
+            for (int i = 0; i < 3; i++)
             {
-                case 0:
-                    thickness = trueThickness;
-                    color = darkColor;
-                    break;
-                case 1:
-                    thickness = midThickness;
-                    color = midColor;
-                    break;
-                case 2:
-                    thickness = centerThickness;
-                    color = trueColor;
-                    break;
-            }
-            //Draws the first part of the payline
-            Vector2 startFirst = new Vector2(Line[0].Pos.X, Line[0].Pos.Y + 120 - (trueThickness / 2) + yOffset);
-            Vector2 endFirst = new Vector2(Line[0].Pos.X + 140 + xOffset, Line[0].Pos.Y + 120 - (trueThickness / 2) + yOffset);
-            Raylib.DrawLineEx(startFirst, endFirst, thickness, color);
+                switch (i)
+                {
+                    case 0:
+                        thickness = trueThickness;
+                        color = darkColor;
+                        break;
+                    case 1:
+                        thickness = midThickness;
+                        color = midColor;
+                        break;
+                    case 2:
+                        thickness = centerThickness;
+                        color = trueColor;
+                        break;
+                }
+                //Draws the first part of the payline
+                Vector2 startFirst = new Vector2(Line[0].Pos.X, Line[0].Pos.Y + 120 - (trueThickness / 2) + yOffset);
+                Vector2 endFirst = new Vector2(Line[0].Pos.X + 140 + xOffset, Line[0].Pos.Y + 120 - (trueThickness / 2) + yOffset);
+                Raylib.DrawLineEx(startFirst, endFirst, thickness, color);
 
-            //Draws all parts of the payline, except start and finish
-            for (int i = 0; i < 4; i++)
-            {
-                Vector2 start = new Vector2(Line[i].Pos.X + 140 + xOffset, Line[i].Pos.Y + 120 - (trueThickness / 2) + yOffset);
-                Vector2 end = new Vector2(Line[i + 1].Pos.X + 140 + xOffset, Line[i + 1].Pos.Y + 120 - (trueThickness / 2) + yOffset);
-                Raylib.DrawLineEx(start, end, thickness, color);
-                Raylib.DrawLineEx(start, end, thickness, color);
-                Raylib.DrawCircleV(start, thickness / 2, color);
-            }
+                //Draws all parts of the payline, except start and finish
+                for (int l = 0; l < 4; l++)
+                {
+                    Vector2 start = new Vector2(Line[l].Pos.X + 140 + xOffset, Line[l].Pos.Y + 120 - (trueThickness / 2) + yOffset);
+                    Vector2 end = new Vector2(Line[l + 1].Pos.X + 140 + xOffset, Line[l + 1].Pos.Y + 120 - (trueThickness / 2) + yOffset);
+                    Raylib.DrawLineEx(start, end, thickness, color);
+                    Raylib.DrawLineEx(start, end, thickness, color);
+                    Raylib.DrawCircleV(start, thickness / 2, color);
+                }
 
-            //Draws the final part of the payline
-            Vector2 startFinal = new Vector2(Line[4].Pos.X + 140 + xOffset, Line[4].Pos.Y + 120 - (trueThickness / 2) + yOffset);
-            Vector2 endFinal = new Vector2(Line[4].Pos.X + 280, Line[4].Pos.Y + 120 - (trueThickness / 2) + yOffset);
-            Raylib.DrawLineEx(startFinal, endFinal, thickness, color);
-            Raylib.DrawCircleV(startFinal, thickness / 2, color);
+                //Draws the final part of the payline
+                Vector2 startFinal = new Vector2(Line[4].Pos.X + 140 + xOffset, Line[4].Pos.Y + 120 - (trueThickness / 2) + yOffset);
+                Vector2 endFinal = new Vector2(Line[4].Pos.X + 280, Line[4].Pos.Y + 120 - (trueThickness / 2) + yOffset);
+                Raylib.DrawLineEx(startFinal, endFinal, thickness, color);
+                Raylib.DrawCircleV(startFinal, thickness / 2, color);
+            }
+            
         }
 
         //Converts a hex code to a Raylib Color, with the option to make it darker with an int
