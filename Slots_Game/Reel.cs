@@ -3,16 +3,17 @@ using System.Numerics;
 using System.Collections.Generic;
 using Raylib_cs;
 
+
 namespace Slots_Game
 {
     public class Reel
     {
-        public Queue<Symbol> WaitingSymbols = new Queue<Symbol>();    //Queue of symbols waiting to spawn
-        public float YMovement {get; set;}                      //YMovement acts like a reels origin of movement
-        public int Index {get; set;}                            //Which reel (0-4) this is
+        public Queue<Symbol> WaitingSymbols = new Queue<Symbol>();  //Queue of symbols waiting to spawn
+        public float YMovement {get; set;}                          //YMovement acts like a reels origin of movement
+        public int Index {get; set;}                                //Which reel (0-4) this is
 
-        int controlPos =  (int)(100 + (3 * 240));               //Where YMovement wants to go. When a reel is here, it means its symbols are graphically where they should be based on their positions in the grid array.
-        float speed = 0;                                        //reels speed of movement
+        int controlPos =  (int)(100 + (3 * 240));                   //Where YMovement wants to go. When a reel is here, it means its symbols are graphically where they should be based on their positions in the grid array.
+        float speed = 0;                                            //reels speed of movement
         float maxSpeed = 5000;
         bool tryingToStop = false;
         float gravity = 39000;

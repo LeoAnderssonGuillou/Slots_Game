@@ -3,6 +3,7 @@ using System.Numerics;
 using System.Collections.Generic;
 using Raylib_cs;
 
+
 namespace Slots_Game
 {
     class Program
@@ -15,8 +16,8 @@ namespace Slots_Game
             Raylib.SetTargetFPS(165);
 
             //Colors
-            Color marginCol = GetCol("8f00db");
-            Color bgCol = GetCol("08003b");
+            Color marginCol = GameObject.GetCol("8f00db", 0);
+            Color bgCol = GameObject.GetCol("08003b", 0);
 
             Game game = new Game();
             Grid grid = new Grid();
@@ -65,15 +66,6 @@ namespace Slots_Game
 
                 Raylib.EndDrawing();
             }
-        }
-
-
-        public static Color GetCol(string hex)
-        {
-            int r = int.Parse(hex.Substring(0, 2), System.Globalization.NumberStyles.HexNumber);
-            int g = int.Parse(hex.Substring(2, 2), System.Globalization.NumberStyles.HexNumber);
-            int b = int.Parse(hex.Substring(4, 2), System.Globalization.NumberStyles.HexNumber);
-            return new Color(r, g, b, 255);
         }
 
     }

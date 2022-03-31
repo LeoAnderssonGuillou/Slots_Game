@@ -16,5 +16,12 @@ namespace Slots_Game
             Index = -1;
             color = Color.PURPLE;
         }
+
+
+        public override bool CreatingWin(int i , Payline payline)
+        {
+            
+            return true;
+        } 
     }
 }

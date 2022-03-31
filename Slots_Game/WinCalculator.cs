@@ -255,12 +255,13 @@ namespace Slots_Game
         }
 
         //Examines if a symbol is the same as the previous symbol on the payline
-        public bool ExamineSymbol(int i , Payline payline)
+        public bool ExamineSymbol(int i , Payline payline)                 //HERE - Use method in standardsymbol/wild, returning if it creates win
         {
-            Symbol currentSymbol = payline.Line[i];
-            Symbol previousSymbol = payline.Line[i - 1];
+            int currentType = payline.Line[i].Index;
+            int winningType = payline.Line[0].Index;
+            int wildType = -1;
 
-            if (currentSymbol.Index == previousSymbol.Index)
+            if (currentType == winningType || currentType == wildType)
             {
                 return true;
             }
@@ -277,7 +278,7 @@ namespace Slots_Game
             {
                 if (payline.Won)
                 {
-                    payline.Draw();
+                    payline.DrawLine();
                 }
             }
         }
