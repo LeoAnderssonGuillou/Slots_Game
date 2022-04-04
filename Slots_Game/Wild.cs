@@ -12,15 +12,14 @@ namespace Slots_Game
 
         public Wild()
         {
-            
             Index = -1;
             color = Color.PURPLE;
+            winValues = new int[]{10, 50, 250};
         }
 
 
-        public override bool CreatingWin(int i , Payline payline)
+        public override bool CreatingWin(int winningType)
         {
-            
             return true;
         } 
     }

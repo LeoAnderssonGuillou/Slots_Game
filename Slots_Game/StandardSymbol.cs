@@ -21,17 +21,27 @@ namespace Slots_Game
                 Color.SKYBLUE,
                 Color.PURPLE
             };
+            
             Index = gen.Next(0, 3);
+            switch (Index)
+            {
+                case 0:
+                    winValues = new int[]{1, 3, 8};
+                    break;
+                case 1:
+                    winValues = new int[]{5, 10, 20};
+                    break;
+                case 2:
+                    winValues = new int[]{10, 20, 50};
+                    break;
+            }
             color = colors[Index];
         }
 
 
-        public override bool CreatingWin(int i , Payline payline)
+        public override bool CreatingWin(int winningType)
         {
-            Symbol currentSymbol = payline.Line[i];
-            Symbol previousSymbol = payline.Line[i - 1];
-
-            if (currentSymbol.Index == previousSymbol.Index)
+            if (Index == winningType)
             {
                 return true;
             }

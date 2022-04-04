@@ -9,7 +9,6 @@ namespace Slots_Game
     public class Payline : GameObject
     {
         public Symbol[] Line {get; set;}
-        public int WinLenght {get; set;}
         public bool Won {get; set;}
 
         Color trueColor;
@@ -76,6 +75,32 @@ namespace Slots_Game
                 Raylib.DrawCircleV(startFinal, thickness / 2, color);
             }
             
+        }
+
+        public int GetWinningType()
+        {
+            int winningType = 0;
+            bool foundType = false;
+            int i = 0;
+            while (!foundType)
+            {
+                if (i > 3)
+                {
+                    winningType = -1;
+                    foundType = true;
+                }
+                else if (Line[i].Index == -1)
+                {
+                    i++;
+                }
+                else
+                {
+                    foundType = true;
+                    winningType = Line[i].Index;
+                }
+            }
+            
+            return winningType;
         }
 
     }

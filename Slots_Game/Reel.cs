@@ -29,7 +29,7 @@ namespace Slots_Game
             for (int i = 0; i < 4; i++)
             {
                 Symbol symbol;
-                if (generator.Next(0, 2) == 0)
+                if (generator.Next(0, 5) < 4)
                 {
                     symbol = new StandardSymbol();
                 }

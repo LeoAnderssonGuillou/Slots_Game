@@ -12,6 +12,7 @@ namespace Slots_Game
         public Vector2 Pos {get; set;}
         protected Color color = Color.YELLOW;
         protected Random gen = new Random();
+        protected int[] winValues;
         Vector2 size = new Vector2(280, 240);
 
 
@@ -27,11 +28,7 @@ namespace Slots_Game
         }
         
 
-        public virtual bool CreatingWin(int i , Payline payline)
-        {
-
-            return true;
-        } 
+        public abstract bool CreatingWin(int winningType);
 
     }
 }

@@ -232,14 +232,12 @@ namespace Slots_Game
             bool looking = true;
             int i = 1;
             int win = 1;
-            payline.WinLenght = 0;
             while (looking)
             {
                 looking = ExamineSymbol(i, payline);
                 if (looking)
                 {
                     win += 1;
-                    payline.WinLenght++;
                     i++;
                 }
                 if (i > 4)
@@ -255,20 +253,11 @@ namespace Slots_Game
         }
 
         //Examines if a symbol is the same as the previous symbol on the payline
-        public bool ExamineSymbol(int i , Payline payline)                 //HERE - Use method in standardsymbol/wild, returning if it creates win
+        public bool ExamineSymbol(int i , Payline payline)
         {
-            int currentType = payline.Line[i].Index;
-            int winningType = payline.Line[0].Index;
-            int wildType = -1;
-
-            if (currentType == winningType || currentType == wildType)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            Symbol currentSymbol = payline.Line[i];
+            int winningType = payline.GetWinningType();
+            return currentSymbol.CreatingWin(winningType);
         }
 
         //Draws paylines containing winning streak
