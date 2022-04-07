@@ -47,6 +47,20 @@ namespace Slots_Game
             }
         }
 
+        public void UpdateBet()
+        {
+            int step = 200;
+            if (Raylib.IsKeyReleased(KeyboardKey.KEY_RIGHT))
+            {
+                Bet += step;
+            }
+            if (Raylib.IsKeyReleased(KeyboardKey.KEY_LEFT))
+            {
+                Bet -= step;
+            }
+            Bet = Math.Clamp(Bet, 0, money);
+        }
+
         //Way of easily drawing Raylib text, centered on the x-axis
         public void CenteredText(string text, int fullWidth, int fontSize, int yPos, int xStart)
         {
@@ -56,7 +70,7 @@ namespace Slots_Game
         //Draws a button with a "capsule" look
         public void DrawButton(string text, int fullWidth, int fontSize, int yPos, int xStart)
         {
-            int margin = 20;
+            int margin = 0;//20
             int buttonHeight = fontSize + margin;
             int textLenght = Raylib.MeasureText(text, fontSize);
             int x = xStart + (fullWidth - textLenght) / 2;

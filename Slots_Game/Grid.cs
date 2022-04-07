@@ -83,6 +83,7 @@ namespace Slots_Game
         //Determines whether to spin or not
         public void HandleSpinning(Game game, bool clickingButton)
         {
+            //FIX THIS BS - PRESSING ENTER OR CLICKINGBUTTON SHOULD BE THE SAME HERE, IS SHOULD BE DETERMINED IN GAME.CS
             if (Raylib.IsKeyReleased(KeyboardKey.KEY_ENTER) && reels[4].HasStopped() || clickingButton && reels[4].HasStopped())
             {
                 spinning = true;

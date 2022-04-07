@@ -5,6 +5,17 @@ using Raylib_cs;
 
 
 //REMAINING STUFF:
+//Change bet
+//String manipulation for clarity
+//Blinking paylines
+//Graphics
+//Win counting up
+
+//Klassdiagram
+//Instruktioner
+//Comments
+//Every method does 1 thing
+//Another generic class
 
 
 namespace Slots_Game
@@ -56,7 +67,10 @@ namespace Slots_Game
                 game.DrawMoney();
                 game.DrawWin();
                 game.DrawBet();
+
+                //Player interaction
                 bool clickingButton = game.HandleButton();
+                game.UpdateBet();
 
                 //Logic
                 grid.HandleSpinning(game, clickingButton);
