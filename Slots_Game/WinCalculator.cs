@@ -209,7 +209,7 @@ namespace Slots_Game
         }
     
         //Returns total winnings of current board
-        public int CalculateWinsBoard(int bet)
+        public long CalculateWinsBoard(long bet)
         {
             RefreshPaylineContents();
             int baseWin = 0;
@@ -275,10 +275,10 @@ namespace Slots_Game
         }
 
         //Takes the standardised units retured from CalculateWinsPayline, and calculates the actual win based on what was bet 
-        public int CalculateRealWin(int winIndex, int bet)
+        public long CalculateRealWin(int winIndex, long bet)
         {
-            float win = (bet * 0.05f) * winIndex;
-            return (int)win;
+            double win = (bet * 0.05f) * winIndex;
+            return (long)win;
         }
 
 

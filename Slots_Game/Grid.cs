@@ -20,7 +20,7 @@ namespace Slots_Game
         int stoppedReels = 0;
         bool hasCalculated = false;
         int controlPos =  (int)(100 + (3 * 240));
-        int win;
+        long win;
 
         WinCalculator winCalculator;
 
@@ -84,6 +84,7 @@ namespace Slots_Game
         public void HandleSpinning(Game game, bool clickingButton)
         {
             //FIX THIS BS - PRESSING ENTER OR CLICKINGBUTTON SHOULD BE THE SAME HERE, IS SHOULD BE DETERMINED IN GAME.CS
+            //ALSO, MAKE IMPOSSIBLE TO SPIN IF BET IS GREATER THAN MONEY (THEN LET ONE INCREASE IT ENDLESSLY UPDATEBET)
             if (Raylib.IsKeyReleased(KeyboardKey.KEY_ENTER) && reels[4].HasStopped() || clickingButton && reels[4].HasStopped())
             {
                 spinning = true;

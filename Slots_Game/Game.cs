@@ -8,26 +8,32 @@ namespace Slots_Game
 {
     public class Game
     {
-        public int Bet {get; set;} = 1000;
-        public int Win {get; set;} = 0;
-        int money = 1000;
+        long controlBet = 1000;
+        public long Bet {get; set;} = 1000;
+        public long Win {get; set;} = 0;
+        long money = 5000000000000000000;
         
 
         public void DrawMoney()
         {
-            CenteredText($"${money}", 1920, 50, 30, 0);
+            CenteredText($"${money.ToString("N0")}", 1920, 50, 30, 0);
         }
 
         public void DrawWin()
         {
-            CenteredText($"{Win}", 1920, 76, 1080, 0);
+            int fSize = 76;
+            if (Win > 1000000000000)
+            {
+                fSize = 50;
+            }
+            CenteredText($"{Win.ToString("N0")}", 1920, fSize, 1080, 0);
             CenteredText("WIN", 1920, 30, 1155, 0);
         }
 
         public void DrawBet()
         {
             CenteredText("TOTAL BET", 960, 30, 1100, 0);
-            CenteredText($"{Bet}", 960, 46, 1130, 0);
+            CenteredText($"{Bet.ToString("N0")}", 960, 46, 1130, 0);
         }
 
         //Draws the SPIN! button and checks if it is being clicked
@@ -49,17 +55,39 @@ namespace Slots_Game
 
         public void UpdateBet()
         {
-            int step = 200;
-            if (Raylib.IsKeyReleased(KeyboardKey.KEY_RIGHT))
+            long oldBet = Bet;
+            long oldControlBet = controlBet;
+            if (Raylib.IsKeyPressed(KeyboardKey.KEY_RIGHT))
             {
-                Bet += step;
+                controlBet += controlBet;
+                RoundBet();
+                
             }
-            if (Raylib.IsKeyReleased(KeyboardKey.KEY_LEFT))
+            if (Raylib.IsKeyPressed(KeyboardKey.KEY_LEFT))
             {
-                Bet -= step;
+                controlBet -= controlBet / 2;
+                RoundBet();
             }
-            Bet = Math.Clamp(Bet, 0, money);
+            if (Bet > money)
+            {
+                Bet = oldBet;
+                controlBet = oldControlBet;
+            }
         }
+
+        public void RoundBet()
+        {
+            if (controlBet < 125)
+            {
+                controlBet = 125;
+            }
+            int betDecimals = controlBet.ToString().Length - 1;
+            double roundedBet = controlBet / Math.Pow(10, betDecimals);
+            roundedBet = Math.Round(roundedBet);
+            roundedBet = roundedBet * Math.Pow(10, betDecimals);
+            Bet = (long)roundedBet;
+        }
+
 
         //Way of easily drawing Raylib text, centered on the x-axis
         public void CenteredText(string text, int fullWidth, int fontSize, int yPos, int xStart)
@@ -70,7 +98,7 @@ namespace Slots_Game
         //Draws a button with a "capsule" look
         public void DrawButton(string text, int fullWidth, int fontSize, int yPos, int xStart)
         {
-            int margin = 0;//20
+            int margin = 20;
             int buttonHeight = fontSize + margin;
             int textLenght = Raylib.MeasureText(text, fontSize);
             int x = xStart + (fullWidth - textLenght) / 2;
@@ -81,7 +109,7 @@ namespace Slots_Game
             Raylib.DrawText(text, x, yPos, fontSize, Color.WHITE);
         }
 
-        public void ChangeMoney(int change)
+        public void ChangeMoney(long change)
         {
             money += change;
         }

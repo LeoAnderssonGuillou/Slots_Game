@@ -5,8 +5,6 @@ using Raylib_cs;
 
 
 //REMAINING STUFF:
-//Change bet
-//String manipulation for clarity
 //Blinking paylines
 //Graphics
 //Win counting up
