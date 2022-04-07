@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using Raylib_cs;
 
 
+//REMAINING STUFF:
+
+
 namespace Slots_Game
 {
     class Program

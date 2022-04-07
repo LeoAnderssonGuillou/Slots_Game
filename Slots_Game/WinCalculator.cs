@@ -212,7 +212,7 @@ namespace Slots_Game
         public int CalculateWinsBoard(int bet)
         {
             RefreshPaylineContents();
-            int win = 0;
+            int baseWin = 0;
             foreach (Payline payline in paylines)
             {
                 payline.Won = false;
@@ -221,9 +221,9 @@ namespace Slots_Game
                 {
                     payline.Won = true;
                 }
-                win += paylineWin;
+                baseWin += paylineWin;
             }
-            return CalculateRealWin(win, bet);
+            return CalculateRealWin(baseWin, bet);
         }
 
         //Calculates winnings of a single payline
@@ -231,13 +231,15 @@ namespace Slots_Game
         {
             bool looking = true;
             int i = 1;
-            int win = 1;
-            while (looking)
+            int streak = 1;
+            int baseWin = 0;
+            Symbol symbolOfWinningType = payline.GetWinningType();      //The type of the first symbol on the payline is determined (for more specific, see Payline.GetWinningType)
+            while (looking)                                             //Examines the next symbol on the payline, continuing as long as a winning sequence of symbols is being detected
             {
-                looking = ExamineSymbol(i, payline);
+                looking = ExamineSymbol(i, payline, symbolOfWinningType);
                 if (looking)
                 {
-                    win += 1;
+                    streak += 1;
                     i++;
                 }
                 if (i > 4)
@@ -245,19 +247,19 @@ namespace Slots_Game
                     looking = false;
                 }
             }
-            if (win < 3)
+            if (streak > 2)
             {
-                win = 0;
+                baseWin = symbolOfWinningType.GetBaseWinFromStreak(streak);
             }
-            return win;
+ 
+            return baseWin;
         }
 
         //Examines if a symbol is the same as the previous symbol on the payline
-        public bool ExamineSymbol(int i , Payline payline)
+        public bool ExamineSymbol(int i , Payline payline, Symbol ofWinningType)
         {
             Symbol currentSymbol = payline.Line[i];
-            int winningType = payline.GetWinningType();
-            return currentSymbol.CreatingWin(winningType);
+            return currentSymbol.CreatingWin(ofWinningType);
         }
 
         //Draws paylines containing winning streak
@@ -278,8 +280,6 @@ namespace Slots_Game
             float win = (bet * 0.05f) * winIndex;
             return (int)win;
         }
-
-
 
 
     }

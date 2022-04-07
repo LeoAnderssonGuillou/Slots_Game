@@ -18,9 +18,10 @@ namespace Slots_Game
         }
 
 
-        public override bool CreatingWin(int winningType)
+        public override bool CreatingWin(Symbol ofWinningType)
         {
             return true;
         } 
+
     }
 }

@@ -77,16 +77,16 @@ namespace Slots_Game
             
         }
 
-        public int GetWinningType()
+        public Symbol GetWinningType()
         {
-            int winningType = 0;
+            Symbol symbolOfWinningType = Line[0];
             bool foundType = false;
             int i = 0;
             while (!foundType)
             {
                 if (i > 3)
                 {
-                    winningType = -1;
+                    symbolOfWinningType = Line[0];
                     foundType = true;
                 }
                 else if (Line[i].Index == -1)
@@ -96,11 +96,11 @@ namespace Slots_Game
                 else
                 {
                     foundType = true;
-                    winningType = Line[i].Index;
+                    symbolOfWinningType = Line[i];
                 }
             }
             
-            return winningType;
+            return symbolOfWinningType;
         }
 
     }

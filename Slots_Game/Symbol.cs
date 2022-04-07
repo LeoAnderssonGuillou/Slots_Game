@@ -28,7 +28,13 @@ namespace Slots_Game
         }
         
 
-        public abstract bool CreatingWin(int winningType);
+        public abstract bool CreatingWin(Symbol ofWinningType);
+
+
+        public int GetBaseWinFromStreak(int streak)
+        {
+            return winValues[streak - 3];
+        }
 
     }
 }
