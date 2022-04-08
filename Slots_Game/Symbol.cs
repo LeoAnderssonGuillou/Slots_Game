@@ -16,20 +16,8 @@ namespace Slots_Game
         protected Vector2 size = new Vector2(280, 240);
 
 
-        public virtual void Draw(int y, Reel reel)
-        {
-            int yMovement = (int)reel.YMovement;
-            int distanceToController = (y - 7) * (int)size.Y;
-            int xPos = 260 + (reel.Index * (int)size.X);
-
-            Raylib.DrawRectangle(xPos, yMovement+ distanceToController, (int)size.X, (int)size.Y, color);
-            Raylib.DrawRectangleLines(xPos, yMovement+ distanceToController, (int)size.X, (int)size.Y, Color.BLACK);
-            //Raylib.DrawRectangle((int)(xPos / 10), ((yMovement + distanceToController) / 10) + 600, (int)(size.X / 10), (int)(size.Y / 10), color);
-        }
-        
-
+        public abstract void Draw(int y, Reel reel);
         public abstract bool CreatingWin(Symbol ofWinningType);
-
 
         public int GetBaseWinFromStreak(int streak)
         {

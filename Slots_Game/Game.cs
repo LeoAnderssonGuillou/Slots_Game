@@ -8,12 +8,13 @@ namespace Slots_Game
 {
     public class Game
     {
+        public int State {get; set;} = 0;
         public long Bet {get; set;} = 1000;
         public long Win {get; set;} = 0;
         public bool PressingSpin {get; set;}
 
         long controlBet = 1000;
-        long money = 300;
+        long money = 1000;
         double graphicalWin = 0;
         
 
@@ -158,6 +159,23 @@ namespace Slots_Game
         {
             Raylib.DrawRectangle(0, 0, (int)winSize.X, 100, marginCol);
              Raylib.DrawRectangle(0, 1060, (int)winSize.X, 140, marginCol);
+        }
+
+        public void StartingScreen(Vector2 size)
+        {
+            Raylib.ClearBackground(Color.GOLD);
+            Raylib.DrawRectangle(50, 50, (int)size.X - 100, (int)size.Y - 100, Color.MAROON);
+
+            CenteredText("WELCOME", (int)size.X, 200, 150, 0, Color.GOLD);
+            CenteredText("SPIN: ENTER", (int)size.X, 75, 600, 0, Color.GOLD);
+            CenteredText("CHANGE BET: ARROW KEYS", (int)size.X, 75, 700, 0, Color.GOLD);
+            CenteredText("[PRESS ENTER TO START]", (int)size.X, 35, 1000, 0, Color.WHITE);
+            
+            if (Raylib.IsKeyPressed(KeyboardKey.KEY_ENTER))
+            {
+                
+                State = 1;
+            }
         }
 
     }
