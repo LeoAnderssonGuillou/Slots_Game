@@ -84,7 +84,6 @@ namespace Slots_Game
         {
             while (Bet > money && Bet >= 200)
             {
-                Console.WriteLine("BROO");
                 controlBet -= controlBet / 2;
                 RoundBet();
             }
@@ -176,6 +175,22 @@ namespace Slots_Game
                 
                 State = 1;
             }
+        }
+
+        //dIcktionary of describtions of the 2 types of symbols. very important (VERY)
+        //Alos conviniently use a (skolverket approved) 3rd generic class how cool
+        public static void ObligatoryUseOfAThirdGenericClass()
+        {
+            Dictionary<Symbol, string> epicDictionaryOfSymbols = new Dictionary<Symbol, string>();
+
+            Symbol thisStandardSymbolInParticular = new StandardSymbol();
+            Symbol thisWildSymbolInParticular = new Wild();
+
+            epicDictionaryOfSymbols.Add(thisStandardSymbolInParticular, "So this one is just like a normal symbol, right? Comes in a few different colors, makes different amounts of cash based on that. Exists in the grid and stuff. What is the grid exactly? Don't worry about it. Anyway so when a standard symbol is created its color is randomized, aint that crazy?");
+            epicDictionaryOfSymbols.Add(thisWildSymbolInParticular, "This one is pretty crazy, yo. It can act like any other color of slot, so it's very good to get on your spins. Says WILD on it too, unbelievable. Anyway so coming to think of it this way of using a dictionary doesn't really make sense. It would be like if I wanted to google cat I would have to input an actual cat. And not like any cat, but a specific individual one at that. Using an array with the Index's of the different types of slots would have made more sense. But then again, then I wouldn't have used three different generic classes would I?");
+
+            Console.WriteLine(epicDictionaryOfSymbols[thisStandardSymbolInParticular]);
+            Console.WriteLine(epicDictionaryOfSymbols[thisWildSymbolInParticular]);
         }
 
     }
