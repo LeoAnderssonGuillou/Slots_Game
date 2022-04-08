@@ -13,10 +13,10 @@ namespace Slots_Game
         protected Color color = Color.YELLOW;
         protected Random gen = new Random();
         protected int[] winValues;
-        Vector2 size = new Vector2(280, 240);
+        protected Vector2 size = new Vector2(280, 240);
 
 
-        public void Draw(int y, Reel reel)
+        public virtual void Draw(int y, Reel reel)
         {
             int yMovement = (int)reel.YMovement;
             int distanceToController = (y - 7) * (int)size.Y;

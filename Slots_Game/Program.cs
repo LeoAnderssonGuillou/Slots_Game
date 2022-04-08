@@ -10,7 +10,7 @@ using Raylib_cs;
 //Win counting up
 
 //Klassdiagram
-//Instruktioner
+//Instructions
 //Comments
 //Every method does 1 thing
 //Another generic class
@@ -22,9 +22,8 @@ namespace Slots_Game
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
             Vector2 winSize = new Vector2(1920, 1200);
-            Raylib.InitWindow((int)winSize.X, (int)winSize.Y, "Gymnasiearbete");
+            Raylib.InitWindow((int)winSize.X, (int)winSize.Y, "SLOTS GAME");
             Raylib.SetTargetFPS(165);
 
             //Colors
@@ -33,7 +32,6 @@ namespace Slots_Game
 
             Game game = new Game();
             Grid grid = new Grid();
-            grid.Fill();
 
 
              while (!Raylib.WindowShouldClose())
@@ -43,27 +41,19 @@ namespace Slots_Game
                 float delta = Raylib.GetFrameTime();
 
 
-                //Board
+                //Reels background
                 Raylib.DrawRectangle(260, 100, 1400, 960, Color.BLACK);
-                
-                //Side indicators
-                // Raylib.DrawRectangle(0, 610, 240, 96, Color.GRAY);
-                // Raylib.DrawRectangle(0, 514, 240, 96, Color.LIGHTGRAY);
-                // Raylib.DrawRectangle(0, 706, 240, 96, Color.LIGHTGRAY);
-                // Raylib.DrawRectangle(0, 418, 240, 96, Color.BEIGE);
 
-                //Grid
+                //Symbols
                 grid.DrawSymbols();
                 grid.MoveSymbols(delta);
 
-                 //Top
-                Raylib.DrawRectangle(0, 0, (int)winSize.X, 100, marginCol);
-                //Bottom
-                Raylib.DrawRectangle(0, 1060, (int)winSize.X, 140, marginCol);
+                //Margins
+                Game.DrawMargins(winSize, marginCol);
 
                 //Text
                 game.DrawMoney();
-                game.DrawWin();
+                game.DrawWin(delta);
                 game.DrawBet();
 
                 //Player interaction
@@ -73,11 +63,6 @@ namespace Slots_Game
                 //Logic
                 grid.HandleSpinning(game);
                 grid.HandleWinning(game);
-
-
-                //FPS
-                // int fps = Raylib.GetFPS();
-                // Raylib.DrawText($"{fps}", 50, 50, 50, Color.GRAY);
 
                 Raylib.EndDrawing();
             }

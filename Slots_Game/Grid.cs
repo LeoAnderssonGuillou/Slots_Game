@@ -30,11 +30,12 @@ namespace Slots_Game
             startPos = new Vector2(260, 100 - (symbolSize.Y * 4));
             grid = new Symbol[gX,gY];
             winCalculator = new WinCalculator(grid);
-
+            
             for (int i = 0; i < 5; i++)
             {
                 reels[i] = new Reel() {Index = i};
             } 
+            Fill();
         }
 
 
@@ -115,6 +116,7 @@ namespace Slots_Game
             {
                 if (!hasCalculated)
                 {
+                    game.ResetGraphicalWin();
                     win = 0;
                     UpdateSymbolPositions();
                     win = winCalculator.CalculateWinsBoard(game.Bet);

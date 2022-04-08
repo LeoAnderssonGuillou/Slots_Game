@@ -29,13 +29,14 @@ namespace Slots_Game
             for (int i = 0; i < 4; i++)
             {
                 Symbol symbol;
-                if (generator.Next(0, 7) < 6)
+                if (generator.Next(0, 8) < 7)
                 {
                     symbol = new StandardSymbol();
                 }
                 else
                 {
-                    symbol = new Wild();
+                    //symbol = new Wild();
+                    symbol = new StandardSymbol();
                 }
                 WaitingSymbols.Enqueue(symbol);
             }

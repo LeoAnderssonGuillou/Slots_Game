@@ -12,37 +12,35 @@ namespace Slots_Game
 
         public StandardSymbol()
         {
-            List<Color> colors = new List<Color>()
-            {
-                Color.RED,
-                Color.YELLOW,
-                Color.GREEN,
-                Color.ORANGE,
-                Color.SKYBLUE,
-                Color.PURPLE
-            };
-            
-            Index = gen.Next(0, 4);
+            Index = gen.Next(0, 5);
             switch (Index)
             {
                 case 0:
-                    //J
+                    //"J"
                     winValues = new int[]{1, 3, 8};
+                    color = Color.PURPLE;
                     break;
                 case 1:
-                    //Coins
+                    //"Coins"
                     winValues = new int[]{3, 7, 15};
+                    color = Color.ORANGE;
                     break;
                 case 2:
-                    //Turtle
-                    winValues = new int[]{5, 10, 20};
+                    //"Frog"
+                    winValues = new int[]{5, 10, 30};
+                    color = Color.YELLOW;
                     break;
                 case 3:
-                    //Dragon
+                    //"Dragon"
                     winValues = new int[]{10, 20, 50};
+                    color = Color.GREEN;
+                    break;
+                case 4:
+                    //"A"
+                    winValues = new int[]{2, 5, 10};
+                    color = Color.RED;
                     break;
             }
-            color = colors[Index];
         }
 
 
