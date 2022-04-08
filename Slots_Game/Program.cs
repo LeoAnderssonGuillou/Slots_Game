@@ -7,11 +7,9 @@ using Raylib_cs;
 //REMAINING STUFF:
 //Blinking paylines
 //Graphics
-//Win counting up
 
 //Klassdiagram
 //Comments
-//Another generic class
 
 
 namespace Slots_Game
@@ -32,12 +30,14 @@ namespace Slots_Game
             Color bgCol = GameObject.GetCol("08003b", 0);
 
             
-             while (!Raylib.WindowShouldClose())
+            while (!Raylib.WindowShouldClose())
             {
+                //Begin drawing
                 Raylib.BeginDrawing();
                 Raylib.ClearBackground(bgCol);
                 float delta = Raylib.GetFrameTime();
 
+                //Main game states
                 switch (game.State)
                 {
                     //Starting screen
@@ -69,11 +69,12 @@ namespace Slots_Game
                         //Logic
                         grid.HandleSpinning(game);
                         grid.HandleWinning(game);
+                        game.CheckIfBankrupt();
                         break;
 
-                    //Bankrupt screen
+                    //Gameover
                     case 2:
-                        Raylib.WindowShouldClose();
+                        game.GameOverScreeen(winSize);
                         break;
                 }
                 

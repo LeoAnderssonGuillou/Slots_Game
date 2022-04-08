@@ -14,7 +14,7 @@ namespace Slots_Game
         public bool PressingSpin {get; set;}
 
         long controlBet = 1000;
-        long money = 1000;
+        long money = 10000;
         double graphicalWin = 0;
         
 
@@ -73,10 +73,6 @@ namespace Slots_Game
             else if (Raylib.IsKeyPressed(KeyboardKey.KEY_ENTER))
             {
                 PressingSpin = true;
-            }
-            if (Bet > money)
-            {
-                PressingSpin = false;
             }
         }
 
@@ -175,6 +171,24 @@ namespace Slots_Game
                 
                 State = 1;
             }
+        }
+
+        public void CheckIfBankrupt()
+        {
+            if (money <= 0)
+            {
+                State = 2;
+            }
+        }
+
+        public void GameOverScreeen(Vector2 size)
+        {
+            Raylib.ClearBackground(Color.BLACK);
+            Raylib.DrawRectangle(250, 175, (int)size.X - 500, (int)size.Y - 500, Color.WHITE);
+            Raylib.DrawRectangle(275, 200, (int)size.X - 550, (int)size.Y - 550, Color.BLACK);
+            //Raylib.DrawRectangle(50, 50, (int)size.X - 100, (int)size.Y - 100, Color.BLACK);
+
+            CenteredText("BANKRUPT ENDING", (int)size.X, 130, 960, 0, Color.WHITE);
         }
 
         //dIcktionary of describtions of the 2 types of symbols. very important (VERY)
