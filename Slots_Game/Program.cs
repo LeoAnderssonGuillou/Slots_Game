@@ -10,9 +10,7 @@ using Raylib_cs;
 //Win counting up
 
 //Klassdiagram
-//Instructions
 //Comments
-//Every method does 1 thing
 //Another generic class
 
 

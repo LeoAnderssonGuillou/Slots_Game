@@ -35,8 +35,7 @@ namespace Slots_Game
                 }
                 else
                 {
-                    //symbol = new Wild();
-                    symbol = new StandardSymbol();
+                    symbol = new Wild();
                 }
                 WaitingSymbols.Enqueue(symbol);
             }
