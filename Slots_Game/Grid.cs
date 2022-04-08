@@ -79,13 +79,10 @@ namespace Slots_Game
         }
 
 
-
         //Determines whether to spin or not
-        public void HandleSpinning(Game game, bool clickingButton)
+        public void HandleSpinning(Game game)
         {
-            //FIX THIS BS - PRESSING ENTER OR CLICKINGBUTTON SHOULD BE THE SAME HERE, IS SHOULD BE DETERMINED IN GAME.CS
-            //ALSO, MAKE IMPOSSIBLE TO SPIN IF BET IS GREATER THAN MONEY (THEN LET ONE INCREASE IT ENDLESSLY UPDATEBET)
-            if (Raylib.IsKeyReleased(KeyboardKey.KEY_ENTER) && reels[4].HasStopped() || clickingButton && reels[4].HasStopped())
+            if (game.PressingSpin && reels[4].HasStopped())
             {
                 spinning = true;
                 couldProvokeSpin = true;
@@ -111,6 +108,7 @@ namespace Slots_Game
             }
         }
 
+
         public void HandleWinning(Game game)
         {
             if (reels[4].HasStopped())
@@ -125,7 +123,6 @@ namespace Slots_Game
                     game.ChangeMoney(win);
                 }
                 winCalculator.DrawWinningLines();
-
             }
         }
 

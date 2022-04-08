@@ -8,10 +8,12 @@ namespace Slots_Game
 {
     public class Game
     {
-        long controlBet = 1000;
         public long Bet {get; set;} = 1000;
         public long Win {get; set;} = 0;
-        long money = 5000000000000000000;
+        public bool PressingSpin {get; set;}
+        
+        long controlBet = 1000;
+        long money = 100000;
         
 
         public void DrawMoney()
@@ -37,7 +39,7 @@ namespace Slots_Game
         }
 
         //Draws the SPIN! button and checks if it is being clicked
-        public bool HandleButton()
+        public void HandleButton()
         {
             DrawButton("SPIN!", 960, 80, 1094, 960);
             Rectangle hitbox = new Rectangle(1286, 1079, 308, 100);
@@ -45,11 +47,15 @@ namespace Slots_Game
             bool clicking = Raylib.IsMouseButtonDown(MouseButton.MOUSE_LEFT_BUTTON);
             if (hovering && clicking)
             {
-                return true;
+                PressingSpin = true;
+            }
+            else if (Raylib.IsKeyPressed(KeyboardKey.KEY_ENTER))
+            {
+                PressingSpin = true;
             }
             else
             {
-                return false;
+                PressingSpin = false;
             }
         }
 

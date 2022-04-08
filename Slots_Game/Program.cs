@@ -67,11 +67,11 @@ namespace Slots_Game
                 game.DrawBet();
 
                 //Player interaction
-                bool clickingButton = game.HandleButton();
+                game.HandleButton();
                 game.UpdateBet();
 
                 //Logic
-                grid.HandleSpinning(game, clickingButton);
+                grid.HandleSpinning(game);
                 grid.HandleWinning(game);
 
 
