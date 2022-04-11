@@ -7,7 +7,6 @@ using Raylib_cs;
 //REMAINING STUFF:
 //Blinking paylines
 //Graphics
-//Comments
 
 
 namespace Slots_Game
