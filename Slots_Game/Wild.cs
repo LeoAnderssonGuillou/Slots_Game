@@ -6,6 +6,7 @@ using Raylib_cs;
 
 namespace Slots_Game
 {
+    //CLASS - WILD: A type of symbol that can create winning streaks together with any type of symbol
     public class Wild : Symbol
     {
         
@@ -17,12 +18,13 @@ namespace Slots_Game
             winValues = new int[]{10, 50, 250};
         }
 
-
+        //Always returns true
         public override bool CreatingWin(Symbol ofWinningType)
         {
             return true;
         }
 
+        //Draws like a standard symbol, except with a border and the text WILD
         public override void Draw(int y, Reel reel)
         {
             int yMovement = (int)reel.YMovement;

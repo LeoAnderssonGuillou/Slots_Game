@@ -7,8 +7,6 @@ using Raylib_cs;
 //REMAINING STUFF:
 //Blinking paylines
 //Graphics
-
-//Klassdiagram
 //Comments
 
 
@@ -22,6 +20,7 @@ namespace Slots_Game
             Vector2 winSize = new Vector2(1920, 1200);
             Raylib.InitWindow((int)winSize.X, (int)winSize.Y, "SLOTS GAME");
             Raylib.SetTargetFPS(165);
+            Game.ObligatoryUseOfAThirdGenericClass();
             Game game = new Game();
             Grid grid = new Grid();
 

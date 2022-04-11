@@ -8,12 +8,13 @@ namespace Slots_Game
 {
     public class Reel
     {
+        //CLASS - REEL: One of the five columns of the grid. Handles the creation and movement of symbols. (Symbols move in union with the other symbols on the reel.) Exists in 5 instances only.
         public Queue<Symbol> WaitingSymbols = new Queue<Symbol>();  //Queue of symbols waiting to spawn
-        public float YMovement {get; set;}                          //YMovement acts like a reels origin of movement
+        public float YMovement {get; set;}                          //YMovement acts like a reel's origin of movement
         public int Index {get; set;}                                //Which reel (0-4) this is
 
         int controlPos =  (int)(100 + (3 * 240));                   //Where YMovement wants to go. When a reel is here, it means its symbols are graphically where they should be based on their positions in the grid array.
-        float speed = 0;                                            //reels speed of movement
+        float speed = 0;
         float maxSpeed = 5000;
         bool tryingToStop = false;
         float gravity = 39000;
@@ -41,6 +42,7 @@ namespace Slots_Game
             }
         }
 
+        //Resets movement related variables of reel when it stops
         public void Reset()
         {
             YMovement = 100 - (1 * 240);
@@ -49,6 +51,7 @@ namespace Slots_Game
             stoppedCompletely = false;
         }
 
+        //Movement of reel
         public void Move(float delta)
         {
             //If the reel's origin of movement (YMovement) is above its "goal"(controlPos), move it down by accelerating
@@ -61,8 +64,7 @@ namespace Slots_Game
                 }
                 YMovement += speed * delta;
             }
-            //If origin is below controlPos, it must mean it should stop - meaning it should accelerate up
-            //When the reel senses it is below controlPos, that means controlPos has not been moved down and the reel should aim to stop
+            //When the reel senses it is below controlPos, that means controlPos has not been moved down (spin has not been provoked) and the reel should aim to stop
             //This causes it to try to accelerate up
             else if (YMovement > controlPos)
             {
@@ -90,7 +92,6 @@ namespace Slots_Game
                     YMovement = controlPos;
                     speed = 0;
                     stoppedCompletely = true;
-                    //Console.WriteLine($"reel {Index} has stopped");
                 }
             }
         }

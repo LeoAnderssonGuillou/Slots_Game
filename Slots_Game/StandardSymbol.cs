@@ -6,12 +6,14 @@ using Raylib_cs;
 
 namespace Slots_Game
 {
+    //CLASS - STANDARDSYMBOL: The "normal", most common type of symbol. When created, it is randomized as one of 5 types.
     public class StandardSymbol : Symbol
     {
-        
+
 
         public StandardSymbol()
         {
+            //Standard symbols come in 5 types, each with their own color and profitability.
             Index = gen.Next(0, 5);
             switch (Index)
             {
@@ -43,7 +45,7 @@ namespace Slots_Game
             }
         }
 
-
+        //Returns true if it is of the same type as the given type
         public override bool CreatingWin(Symbol ofWinningType)
         {
             if (Index == ofWinningType.Index)
@@ -56,6 +58,7 @@ namespace Slots_Game
             }
         }
 
+        //Draws the symbol
         public override void Draw(int y, Reel reel)
         {
             int yMovement = (int)reel.YMovement;

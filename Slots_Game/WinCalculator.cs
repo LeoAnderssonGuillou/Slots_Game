@@ -6,6 +6,7 @@ using Raylib_cs;
 
 namespace Slots_Game
 {
+    //CLASS - WINCALCULATOR: The WinCalculator exists in one instance only, and handles the calculation of winnings. The 50 paylines are also defined here.
     public class WinCalculator
     {
         Symbol[,] grid;
@@ -208,7 +209,7 @@ namespace Slots_Game
 
         }
     
-        //Returns total winnings of current board
+        //Returns total winnings of the current layouts of slots
         public long CalculateWinsBoard(long bet)
         {
             RefreshPaylineContents();
@@ -255,7 +256,7 @@ namespace Slots_Game
             return baseWin;
         }
 
-        //Examines if a symbol is the same as the previous symbol on the payline
+        //Examines if a symbol is the same as the previous symbol on the payline (or if it is a WILD)
         public bool ExamineSymbol(int i , Payline payline, Symbol ofWinningType)
         {
             Symbol currentSymbol = payline.Line[i];

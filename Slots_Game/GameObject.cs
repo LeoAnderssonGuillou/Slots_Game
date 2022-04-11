@@ -5,10 +5,10 @@ using Raylib_cs;
 
 namespace Slots_Game
 {
+    //CLASS - GAMEOBJECT: Abstract base class for symbols and paylines.
     public abstract class GameObject
     {
         protected Color color;
-
 
         //Converts a hex code to a Raylib Color, with the option to make it darker with an int
         public static Color GetCol(string hex, int dark)

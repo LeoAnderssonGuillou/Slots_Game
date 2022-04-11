@@ -6,6 +6,7 @@ using Raylib_cs;
 
 namespace Slots_Game
 {
+    //CLASS - PAYLINE: A line indicating the way which a streak of slots create a win. There are 50 paylines in total, each allowing for different ways that slots can create wins.
     public class Payline : GameObject
     {
         public Symbol[] Line {get; set;}
@@ -32,7 +33,7 @@ namespace Slots_Game
             yOffset = y * 18;
         }
 
-        //Draws a payline. Technically draws three lines with varying thicness and color to create a 3D-effect
+        //Draws a payline. Technically draws three lines with varying thickness and color to create a 3D-effect
         public void DrawLine()
         {
             for (int i = 0; i < 3; i++)
@@ -76,6 +77,9 @@ namespace Slots_Game
             
         }
 
+        //To create a win, a payline has to contain a streak of the same type of slot. Some types of slots are also better than others, creating larger wins. Therefore, the type of slot that is winning on a payline is determined.
+        //This slot is always the first slot on the line, with the excpetion of this slot being a WILD. The following slot then becomes the slot of winning type. If that is also a WILD, the third slot determines the winning type, and so on.
+        //Only if all slots on the line are WILDs does WILD become the winning type.
         public Symbol GetWinningType()
         {
             Symbol symbolOfWinningType = Line[0];

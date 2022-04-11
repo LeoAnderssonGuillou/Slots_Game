@@ -6,6 +6,7 @@ using Raylib_cs;
 
 namespace Slots_Game
 {
+    //CLASS - GAME: Handles basic game functions and interface. Exists in one instance only.
     public class Game
     {
         public int State {get; set;} = 0;
@@ -18,11 +19,13 @@ namespace Slots_Game
         double graphicalWin = 0;
         
 
+        //Draws current player money
         public void DrawMoney()
         {
             CenteredText($"${money.ToString("N0")}", 1920, 50, 30, 0);
         }
 
+        //Draws what the player have won
         public void DrawWin(float delta)
         {
             int fSize = 76;
@@ -35,6 +38,7 @@ namespace Slots_Game
             CenteredText("WIN", 1920, 30, 1155, 0);
         }
 
+        //When a win is displayed, it quickly counts up from 0 until it reaches the actie win 
         public void UpdateGraphicalWin(float delta)
         {
             if (graphicalWin < Win)
@@ -47,18 +51,20 @@ namespace Slots_Game
             }
         }
 
+        //Encapsulates graphicalWin
         public void ResetGraphicalWin()
         {
             graphicalWin = 0;
         }
 
+        //Draws the active bet
         public void DrawBet()
         {
             CenteredText("TOTAL BET", 960, 30, 1100, 0);
             CenteredText($"{Bet.ToString("N0")}", 960, 46, 1130, 0);
         }
 
-        //Draws the SPIN! button and checks if it is being clicked
+        //Draws the SPIN! button and checks if it is being pressed (with left-click or with enter)
         public void HandleButton()
         {
             DrawButton("SPIN!", 960, 80, 1094, 960);
@@ -76,6 +82,7 @@ namespace Slots_Game
             }
         }
 
+        //Checks if player want to change the active bet with input
         public void UpdateBet()
         {
             while (Bet > money && Bet >= 200)
@@ -104,7 +111,9 @@ namespace Slots_Game
             }
             
         }
-
+        
+        //In UpdateBet, the bet is changed 50%. Here, it is then rounded int he following way:
+        //109 will become 100, 4412 will become 4000, 18934 will become 20000, etc.)
         public void RoundBet()
         {
             if (controlBet < 125)
@@ -156,6 +165,7 @@ namespace Slots_Game
              Raylib.DrawRectangle(0, 1060, (int)winSize.X, 140, marginCol);
         }
 
+        //Draw starting screen, giving player instructions
         public void StartingScreen(Vector2 size)
         {
             Raylib.ClearBackground(Color.GOLD);
@@ -173,6 +183,7 @@ namespace Slots_Game
             }
         }
 
+        //Checks if player has money below 0
         public void CheckIfBankrupt()
         {
             if (money <= 0)
@@ -181,15 +192,17 @@ namespace Slots_Game
             }
         }
 
+        //Draws the gameover-screen. This screen is an ending - nothing can be done from here.
         public void GameOverScreeen(Vector2 size)
         {
             Raylib.ClearBackground(Color.BLACK);
-            Raylib.DrawRectangle(250, 175, (int)size.X - 500, (int)size.Y - 500, Color.WHITE);
-            Raylib.DrawRectangle(275, 200, (int)size.X - 550, (int)size.Y - 550, Color.BLACK);
-            //Raylib.DrawRectangle(50, 50, (int)size.X - 100, (int)size.Y - 100, Color.BLACK);
+            Raylib.DrawRectangle(250, 125, (int)size.X - 500, (int)size.Y - 500, Color.WHITE);
+            Raylib.DrawRectangle(275, 150, (int)size.X - 550, (int)size.Y - 550, Color.BLACK);
 
-            CenteredText("BANKRUPT ENDING", (int)size.X, 130, 960, 0, Color.WHITE);
+            CenteredText("BANKRUPT ENDING", (int)size.X, 130, 880, 0, Color.WHITE);
+            CenteredText("You bet more than you could afford", (int)size.X, 50, 1050, 0, Color.WHITE);
         }
+
 
         //dIcktionary of describtions of the 2 types of symbols. very important (VERY)
         //Alos conviniently use a (skolverket approved) 3rd generic class how cool

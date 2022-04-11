@@ -5,7 +5,8 @@ using Raylib_cs;
 
 
 namespace Slots_Game
-{
+{   
+    //CLASS - GRID: Handles most things related to the 4x5 grid of slots seen on the screen. Exists in one instance only.
     public class Grid
     {   
         int gX = 5;
@@ -38,7 +39,7 @@ namespace Slots_Game
             Fill();
         }
 
-
+        //Fills the entire grid with slots during its initiation
         public void Fill()
         {
             for (int x = 0; x < gX; x++)
@@ -50,7 +51,7 @@ namespace Slots_Game
             }
         }
 
-
+        //Draws symnbols
         public void DrawSymbols()
         {
             for (int x = 0; x < gX; x++)
@@ -63,7 +64,7 @@ namespace Slots_Game
             }
         }
 
-
+        //Moves symbols (graphically)
         public void MoveSymbols(float delta)
         {
             for (int x = 0; x < 5; x++)
@@ -72,7 +73,7 @@ namespace Slots_Game
             }
             couldProvokeSpin = false;
 
-
+            //When a full set of 4x5 symbols has passed the screen, a new spin can be proved (see ProvokeSpin)
             if (reels[4].YMovement > controlPos)
             {
                 couldProvokeSpin = true;
@@ -83,6 +84,7 @@ namespace Slots_Game
         //Determines whether to spin or not
         public void HandleSpinning(Game game)
         {
+            //Lets player iniate a new spin when all reels has stopped
             if (game.PressingSpin && reels[4].HasStopped())
             {
                 spinning = true;
@@ -91,6 +93,7 @@ namespace Slots_Game
                 game.ChangeMoney(-game.Bet);
             }
 
+            //If a spin can be provoked AND the reels should continue to spin - provoke spin
             if (couldProvokeSpin && spinning)
             {
                 ProvokeSpin(stoppedReels);
@@ -100,6 +103,7 @@ namespace Slots_Game
                 }
             }
 
+            //When all 5 reels have stopped spinning - stop completely
             if (stoppedReels == 5)
             {
                 spinning = false;
@@ -109,7 +113,7 @@ namespace Slots_Game
             }
         }
 
-
+        //When all reels have stopped - calculate the winnings and draw winning paylines
         public void HandleWinning(Game game)
         {
             if (reels[4].HasStopped())
@@ -165,9 +169,9 @@ namespace Slots_Game
             }
         }
 
-        //Provoking a spin moves all symbols down 4 times and creates new ones at top
+        //Provoking a spin moves all symbols down 4 times in the grid and creates new ones at top
         //This only refers to the symbols being moved in the "grid" 2D-array. Graphically, they remain in place
-        //Reels' YMovement being reset causes them to move down graphically
+        //Reels' YMovement being reset causes them to strive to move down graphically
         public void ProvokeSpin(int targets)
         {
             ReloadReels(targets);
