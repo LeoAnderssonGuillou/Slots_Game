@@ -10,7 +10,6 @@ namespace Slots_Game
     {
         public int Index {get; set;}
         public Vector2 Pos {get; set;}
-        protected Color color = Color.YELLOW;
         protected Random gen = new Random();
         protected int[] winValues;
         protected Vector2 size = new Vector2(280, 240);

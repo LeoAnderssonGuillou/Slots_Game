@@ -7,7 +7,7 @@ namespace Slots_Game
 {
     public abstract class GameObject
     {
-        
+        protected Color color;
 
 
         //Converts a hex code to a Raylib Color, with the option to make it darker with an int

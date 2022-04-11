@@ -14,7 +14,6 @@ namespace Slots_Game
         Color trueColor;
         Color darkColor;
         Color midColor;
-        Color color;
         int thickness;
         int xOffset;
         int yOffset;
